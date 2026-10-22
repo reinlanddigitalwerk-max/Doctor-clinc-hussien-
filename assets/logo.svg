@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none" role="img" aria-label="Hausarzt Praxis Hilden Nord">
-  <rect width="64" height="64" rx="16" fill="#E3F2EF"/>
-  <path d="M14 30.5 32 15l18 15.5" stroke="#127C71" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M19 27v19a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V27" stroke="#127C71" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="16" fill="#E6F0FA"/>
+  <path d="M14 30.5 32 15l18 15.5" stroke="#1A6FB5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 27v19a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V27" stroke="#1A6FB5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M32 31v12M26 37h12" stroke="#E98A4F" stroke-width="4" stroke-linecap="round"/>
-  <text x="80" y="29" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#0E2A2B">Hausarzt Praxis</text>
-  <text x="80" y="52" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="2" fill="#127C71">HILDEN NORD</text>
+  <text x="80" y="29" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#0F2236">Hausarzt Praxis</text>
+  <text x="80" y="52" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="2" fill="#1A6FB5">HILDEN NORD</text>
 </svg>
