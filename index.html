@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.title">Hausarzt Praxis Hilden Nord – Mohammad Hussein</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Hausarztpraxis in Hilden Nord: hausärztliche Versorgung, Vorsorge, Impfungen und ärztliche Gutachten. Wir sprechen Deutsch, Arabisch, Ukrainisch, Rumänisch und Englisch.">
+  <meta name="theme-color" content="#127C71">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Hausarzt Praxis Hilden Nord">
+        <img src="assets/logo-mark.svg" alt="" width="44" height="44">
+        <span class="brand-text">
+          <strong>Hausarzt Praxis</strong>
+          <span>Hilden Nord</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <a href="#leistungen" data-i18n="nav.services">Leistungen</a>
+        <a href="#gutachten" data-i18n="nav.expert">Gutachten</a>
+        <a href="#arzt" data-i18n="nav.doctor">Ihr Arzt</a>
+        <a href="#sprechzeiten" data-i18n="nav.hours">Sprechzeiten</a>
+        <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <label class="lang-select">
+          <span class="sr-only" data-i18n="a11y.language">Sprache wählen</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+          <select id="lang-switch">
+            <option value="de">Deutsch</option>
+            <option value="ar">العربية</option>
+            <option value="uk">Українська</option>
+            <option value="ro">Română</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <a class="btn btn-primary btn-sm js-book" href="#kontakt" data-i18n="cta.book">Termin buchen</a>
+        <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">
+          <span class="sr-only" data-i18n="a11y.menu">Menü</span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Hausarztpraxis in Hilden</p>
+          <h1 data-i18n="hero.title">Ihre Hausarztpraxis in Hilden Nord</h1>
+          <p class="lead" data-i18n="hero.lead">Persönliche hausärztliche Versorgung und ärztliche Gutachten – mit Zeit für Ihre Anliegen und in fünf Sprachen.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary js-book" href="#kontakt" data-i18n="cta.book">Termin buchen</a>
+            <a class="btn btn-ghost js-phone-link" href="tel:">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>
+              <span class="js-phone">–</span>
+            </a>
+          </div>
+          <ul class="badges">
+            <li><span class="dot"></span><span data-i18n="hero.badge1">Neue Patientinnen und Patienten willkommen</span></li>
+            <li><span class="dot"></span><span data-i18n="hero.badge2">Gesetzlich &amp; privat versichert</span></li>
+            <li><span class="dot"></span><span data-i18n="hero.badge3">Wir sprechen 5 Sprachen</span></li>
+          </ul>
+        </div>
+
+        <aside class="hero-card" aria-labelledby="today-title">
+          <div class="hero-card-head">
+            <span class="status js-status"></span>
+            <h2 id="today-title" class="js-today-title" data-i18n="info.today">Heute</h2>
+          </div>
+          <p class="today-hours js-today-hours">–</p>
+          <dl class="hero-facts">
+            <div>
+              <dt data-i18n="info.address">Adresse</dt>
+              <dd class="js-address">–</dd>
+            </div>
+            <div>
+              <dt data-i18n="info.phone">Telefon</dt>
+              <dd><a class="js-phone-link" href="tel:"><span class="js-phone">–</span></a></dd>
+            </div>
+            <div>
+              <dt data-i18n="doctor.langsTitle">Sprachen in der Praxis</dt>
+              <dd class="flag-row" aria-hidden="true">DE · AR · UK · RO · EN</dd>
+            </div>
+          </dl>
+          <a class="btn btn-light btn-block" href="#sprechzeiten" data-i18n="info.allHours">Alle Sprechzeiten</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="leistungen">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-i18n="services.eyebrow">Leistungen</p>
+          <h2 data-i18n="services.title">Was wir für Sie tun</h2>
+          <p class="lead" data-i18n="services.lead">Von der akuten Erkältung bis zur langfristigen Begleitung – wir sind Ihre erste Anlaufstelle für alle gesundheitlichen Fragen.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></span>
+            <h3 data-i18n="s1.t">Hausärztliche Versorgung</h3>
+            <p data-i18n="s1.d">Erste Anlaufstelle bei akuten Beschwerden, Infekten und allen gesundheitlichen Fragen.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3 data-i18n="s2.t">Vorsorge &amp; Check-up</h3>
+            <p data-i18n="s2.d">Gesundheits-Check-up ab 18 und ab 35 sowie individuelle Beratung zur Vorsorge.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m18 2 4 4M17 7l3-3M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5M9 11l4 4M5 19l-3 3M14 4l6 6"/></svg></span>
+            <h3 data-i18n="s3.t">Impfungen</h3>
+            <p data-i18n="s3.d">Grippe-, COVID-19-, Tetanus- und weitere Impfungen nach STIKO-Empfehlung.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 2v6l-5 9a3 3 0 0 0 2.6 5h10.8A3 3 0 0 0 20 17l-5-9V2M8 2h8M7 15h10"/></svg></span>
+            <h3 data-i18n="s4.t">Labor &amp; Blutentnahme</h3>
+            <p data-i18n="s4.d">Blut- und Urinuntersuchungen direkt in der Praxis – mit verständlicher Befundbesprechung.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+            <h3 data-i18n="s5.t">Chronische Erkrankungen</h3>
+            <p data-i18n="s5.d">Langfristige Betreuung bei Diabetes, Bluthochdruck, Asthma/COPD und Herzerkrankungen.</p>
+          </article>
+          <article class="card card-highlight">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <h3 data-i18n="s6.t">Gutachten &amp; Atteste</h3>
+            <p data-i18n="s6.d">Ärztliche Gutachten, Bescheinigungen und Atteste für Behörden, Versicherungen und Arbeitgeber.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v2h6V3M9 12h6M12 9v6"/></svg></span>
+            <h3 data-i18n="s7.t">Krankschreibung &amp; Rezepte</h3>
+            <p data-i18n="s7.d">Arbeitsunfähigkeitsbescheinigungen, Folgerezepte und Überweisungen zu Fachärzten.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5M5 9v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M12 11v6M9 14h6"/></svg></span>
+            <h3 data-i18n="s8.t">Hausbesuche</h3>
+            <p data-i18n="s8.d">Für Patientinnen und Patienten, die die Praxis nicht selbst aufsuchen können – nach Absprache.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expert opinions -->
+    <section class="section section-tint" id="gutachten">
+      <div class="container split">
+        <div>
+          <p class="eyebrow" data-i18n="expert.eyebrow">Gutachten</p>
+          <h2 data-i18n="expert.title">Ärztliche Gutachten &amp; Bescheinigungen</h2>
+          <p class="lead" data-i18n="expert.lead">Mohammad Hussein erstellt ärztliche Gutachten – sorgfältig, neutral und nachvollziehbar.</p>
+          <a class="btn btn-primary js-mail-link" href="mailto:" data-i18n="expert.cta">Gutachten anfragen</a>
+        </div>
+        <div class="panel">
+          <ul class="checklist">
+            <li data-i18n="expert.i1">Gutachten für private und gesetzliche Versicherungen</li>
+            <li data-i18n="expert.i2">Gutachten und Befundberichte für Behörden und Ämter (z. B. Schwerbehinderung, Rente)</li>
+            <li data-i18n="expert.i3">Atteste und Bescheinigungen für Arbeitgeber, Schule, Kita und Sport</li>
+            <li data-i18n="expert.i4">Ärztliche Stellungnahmen auf Anfrage</li>
+          </ul>
+          <p class="note" data-i18n="expert.note">Gutachten sind in der Regel keine Kassenleistung. Die Kosten richten sich nach der Gebührenordnung für Ärzte (GOÄ) – wir informieren Sie vorab.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctor -->
+    <section class="section" id="arzt">
+      <div class="container doctor">
+        <div class="doctor-photo" aria-hidden="true">
+          <!-- Foto ersetzen: <img src="assets/mohammad-hussein.jpg" alt="Mohammad Hussein"> -->
+          <span>MH</span>
+        </div>
+        <div>
+          <p class="eyebrow" data-i18n="doctor.eyebrow">Ihr Arzt</p>
+          <h2 data-i18n="doctor.name">Mohammad Hussein</h2>
+          <p class="role" data-i18n="doctor.role">Hausarzt · Ärztliche Gutachten</p>
+          <p data-i18n="doctor.bio">Mit Erfahrung, Ruhe und einem offenen Ohr begleitet Mohammad Hussein seine Patientinnen und Patienten in jeder Lebensphase. Gute Verständigung ist ihm wichtig – deshalb können Sie in unserer Praxis in Ihrer Sprache sprechen.</p>
+          <h3 class="langs-title" data-i18n="doctor.langsTitle">Sprachen in der Praxis</h3>
+          <ul class="langs">
+            <li><span class="code">DE</span><span data-i18n="lang.de">Deutsch</span></li>
+            <li><span class="code">AR</span><span data-i18n="lang.ar">Arabisch</span></li>
+            <li><span class="code">UK</span><span data-i18n="lang.uk">Ukrainisch</span></li>
+            <li><span class="code">RO</span><span data-i18n="lang.ro">Rumänisch</span></li>
+            <li><span class="code">EN</span><span data-i18n="lang.en">Englisch</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hours + what to bring -->
+    <section class="section section-tint" id="sprechzeiten">
+      <div class="container split">
+        <div>
+          <p class="eyebrow" data-i18n="hours.eyebrow">Sprechzeiten</p>
+          <h2 data-i18n="hours.title">Wann wir für Sie da sind</h2>
+          <table class="hours">
+            <tbody class="js-hours"></tbody>
+          </table>
+          <p class="note" data-i18n="hours.note">Termine nach Vereinbarung. Außerhalb der Sprechzeiten: ärztlicher Bereitschaftsdienst 116 117 – im Notfall 112.</p>
+        </div>
+        <div class="panel">
+          <h3 data-i18n="visit.title">Bitte zum Termin mitbringen</h3>
+          <ul class="checklist">
+            <li data-i18n="visit.i1">Elektronische Gesundheitskarte (Versichertenkarte)</li>
+            <li data-i18n="visit.i2">Medikamentenplan bzw. Ihre aktuellen Medikamente</li>
+            <li data-i18n="visit.i3">Vorbefunde und Arztbriefe</li>
+            <li data-i18n="visit.i4">Überweisung, falls vorhanden</li>
+            <li data-i18n="visit.i5">Impfpass</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container narrow">
+        <header class="section-head">
+          <p class="eyebrow" data-i18n="faq.eyebrow">Häufige Fragen</p>
+          <h2 data-i18n="faq.title">Gut zu wissen</h2>
+        </header>
+        <div class="faq">
+          <details>
+            <summary data-i18n="faq.q1">Nehmen Sie neue Patientinnen und Patienten auf?</summary>
+            <p data-i18n="faq.a1">Ja. Vereinbaren Sie einfach telefonisch oder online einen Termin – wir freuen uns auf Sie.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q2">Welche Versicherungen akzeptieren Sie?</summary>
+            <p data-i18n="faq.a2">Wir behandeln gesetzlich und privat Versicherte sowie Selbstzahlerinnen und Selbstzahler.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q3">In welchen Sprachen kann ich mich verständigen?</summary>
+            <p data-i18n="faq.a3">In unserer Praxis sprechen wir Deutsch, Arabisch, Ukrainisch, Rumänisch und Englisch.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q4">Wie beantrage ich ein Gutachten?</summary>
+            <p data-i18n="faq.a4">Rufen Sie uns an oder schreiben Sie uns eine E-Mail mit dem Anlass und – falls vorhanden – dem Schreiben der anfordernden Stelle. Wir besprechen dann Ablauf, Termin und Kosten mit Ihnen.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q5">Was mache ich nachts oder am Wochenende?</summary>
+            <p data-i18n="faq.a5">Der ärztliche Bereitschaftsdienst ist rund um die Uhr unter 116 117 erreichbar. In lebensbedrohlichen Notfällen wählen Sie bitte sofort 112.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-dark" id="kontakt">
+      <div class="container split">
+        <div>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Kontakt</p>
+          <h2 data-i18n="contact.title">So erreichen Sie uns</h2>
+          <p class="lead" data-i18n="contact.lead">Rufen Sie uns an, schreiben Sie uns oder buchen Sie Ihren Termin direkt online.</p>
+          <div class="hero-cta">
+            <a class="btn btn-accent js-book" href="#kontakt" data-i18n="cta.book">Termin buchen</a>
+            <a class="btn btn-outline-light js-route" href="#" target="_blank" rel="noopener" data-i18n="contact.route">Route planen</a>
+          </div>
+        </div>
+        <dl class="contact-list">
+          <div>
+            <dt data-i18n="info.address">Adresse</dt>
+            <dd class="js-address">–</dd>
+          </div>
+          <div>
+            <dt data-i18n="info.phone">Telefon</dt>
+            <dd><a class="js-phone-link" href="tel:"><span class="js-phone">–</span></a></dd>
+          </div>
+          <div class="js-fax-row">
+            <dt data-i18n="info.fax">Fax</dt>
+            <dd class="js-fax">–</dd>
+          </div>
+          <div>
+            <dt data-i18n="info.email">E-Mail</dt>
+            <dd><a class="js-mail-link" href="mailto:"><span class="js-email">–</span></a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top">
+        <img src="assets/logo-mark.svg" alt="" width="36" height="36">
+        <span class="brand-text">
+          <strong>Hausarzt Praxis</strong>
+          <span>Hilden Nord</span>
+        </span>
+      </a>
+      <nav class="footer-nav" aria-label="Rechtliches">
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="datenschutz.html" data-i18n="footer.privacy">Datenschutz</a>
+      </nav>
+      <p class="copy">© <span class="js-year"></span> Hausarzt Praxis Hilden Nord · Mohammad Hussein</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

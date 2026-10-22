@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Hausarzt Praxis Hilden Nord">
+  <rect width="64" height="64" rx="16" fill="#E3F2EF"/>
+  <path d="M14 30.5 32 15l18 15.5" stroke="#127C71" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 27v19a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V27" stroke="#127C71" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 31v12M26 37h12" stroke="#E98A4F" stroke-width="4" stroke-linecap="round"/>
+</svg>
