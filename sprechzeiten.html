@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprechzeiten – Hausarzt Praxis Hilden Nord</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Hausarztpraxis in Hilden Nord: hausärztliche Versorgung, Vorsorge, Impfungen und ärztliche Gutachten. Wir sprechen Deutsch, Arabisch, Ukrainisch, Rumänisch und Englisch.">
+  <meta name="theme-color" content="#1A6FB5">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js"></script>
+  <script src="js/lang/de.js"></script>
+</head>
+<body data-page="sprechzeiten" data-title="page.hours">
+  <div id="site-header"></div>
+  <script src="js/app.js"></script>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html"><span data-i18n="nav.home">Startseite</span></a><span aria-hidden="true">/</span><span data-i18n="nav.hours">Sprechzeiten</span></nav>
+        <h1 data-i18n="page.hours">Sprechzeiten</h1>
+        <p class="lead" data-i18n="hours.pageLead">Wann wir für Sie da sind – mit und ohne Termin.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div>
+          <h2 data-i18n="hours.title">Wann wir für Sie da sind</h2>
+          <table class="hours"><tbody class="js-hours" data-source="hours"></tbody></table>
+          <p class="note" data-i18n="hours.byAppointment">Termine nach Vereinbarung – online oder telefonisch.</p>
+          <a class="btn btn-primary js-book" href="kontakt.html" data-i18n="cta.book">Termin buchen</a>
+        </div>
+        <div class="panel js-acute-section" id="akut">
+          <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <h3 data-i18n="acute.title">Akutsprechstunde ohne Termin</h3>
+          <p data-i18n="acute.d">Bei akuten Beschwerden können Sie zu diesen Zeiten ohne Termin kommen. Bitte planen Sie etwas Wartezeit ein.</p>
+          <table class="hours"><tbody class="js-hours" data-source="acuteHours"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint">
+      <div class="container split">
+        <div class="emergency">
+          <h3><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/></svg></span><span data-i18n="emergency.title">Außerhalb der Sprechzeiten</span></h3>
+          <div class="emergency-numbers">
+            <a href="tel:116117"><b>116 117</b><span data-i18n="emergency.oncall">Ärztlicher Bereitschaftsdienst – nachts, am Wochenende und an Feiertagen</span></a>
+            <a href="tel:112"><b>112</b><span data-i18n="emergency.112">Rettungsdienst und Notarzt bei Lebensgefahr</span></a>
+          </div>
+        </div>
+        <div>
+          <h3 data-i18n="holidays.title">Urlaub &amp; Vertretung</h3>
+          <p data-i18n="holidays.d">Praxisschließungen und Vertretungen geben wir rechtzeitig hier auf der Website und am Praxiseingang bekannt.</p>
+          <div class="panel" style="margin-top:22px">
+            <h3 data-i18n="visit.title">Bitte zum Termin mitbringen</h3>
+            <ul class="checklist">
+              <li data-i18n="visit.i1">Elektronische Gesundheitskarte (Versichertenkarte)</li>
+              <li data-i18n="visit.i2">Medikamentenplan bzw. Ihre aktuellen Medikamente</li>
+              <li data-i18n="visit.i3">Vorbefunde und Arztbriefe</li>
+              <li data-i18n="visit.i4">Überweisung, falls vorhanden</li>
+              <li data-i18n="visit.i5">Impfpass</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+Fotos hier als .jpg ablegen – sie erscheinen automatisch auf der Website.
+Dateinamen und Platzierung: siehe README.md im Hauptordner (Abschnitt "Fotos").

@@ -3,27 +3,63 @@
 Website der Hausarztpraxis von Mohammad Hussein (Hausarzt · Ärztliche Gutachten).
 Statische Seite ohne Build-Schritt, in 5 Sprachen: Deutsch, Arabisch (RTL), Ukrainisch, Rumänisch, Englisch.
 
-## Struktur
+Aufbau wie bei deutschen Hausarztpraxen üblich: Startseite, Praxis, Leistungen, Gutachten (Schwerpunkt),
+Team, Sprechzeiten, Kontakt, Jobs, Impressum, Datenschutz.
 
-```
-index.html          Startseite (Leistungen, Gutachten, Arzt, Sprechzeiten, FAQ, Kontakt)
-impressum.html      Impressum (Pflichtangaben für Ärzte, NRW)
-datenschutz.html    Datenschutzerklärung (Muster)
-assets/logo.svg     Logo mit Schriftzug
-assets/logo-mark.svg  Logo-Symbol / Favicon
-css/styles.css      Design
-js/config.js        Praxisdaten: Adresse, Telefon, E-Mail, Sprechzeiten, Buchungslink
-js/i18n.js          Alle Texte in allen Sprachen
-js/main.js          Sprachumschaltung, Sprechzeiten, „Jetzt geöffnet“-Status
-```
+## Seiten
+
+| Datei | Inhalt |
+|---|---|
+| `index.html` | Startseite: Heute-Status, Wegweiser „Ihr Anliegen“, Leistungen, Sprachen, Kontakt |
+| `praxis.html` | Werte, Räume (Fotos), erster Besuch, FAQ, Anfahrt |
+| `leistungen.html` | Alle Leistungen im Detail |
+| `gutachten.html` | Gutachten-Service: für wen, Ablauf, Unterlagen, Kosten |
+| `team.html` | Arzt und Praxisteam |
+| `sprechzeiten.html` | Sprechzeiten, Akutsprechstunde, Notdienst, Urlaub |
+| `kontakt.html` | Kontakt, Rezepte & Überweisungen bestellen, Anfahrt |
+| `karriere.html` | Stellenangebote |
+| `impressum.html`, `datenschutz.html` | Rechtliches (nur Deutsch) |
 
 ## Vor der Veröffentlichung anpassen
 
-1. **`js/config.js`**: echte Adresse, Telefon, E-Mail und Sprechzeiten eintragen (alle `TODO`).
-   Optional `bookingUrl` (z. B. Doctolib), dann führt „Termin buchen“ dorthin, sonst ruft der Button die Praxis an.
-2. **`impressum.html` / `datenschutz.html`**: gelb markierte Platzhalter ersetzen und rechtlich prüfen lassen.
-3. **Foto**: Bild als `assets/mohammad-hussein.jpg` ablegen und in `index.html` im Block `doctor-photo`
-   das `<span>MH</span>` durch `<img src="assets/mohammad-hussein.jpg" alt="Mohammad Hussein">` ersetzen.
+Fast alles steht in **`js/config.js`** (alle `TODO`):
+
+- Adresse, Telefon, E-Mail, optional Fax
+- `bookingUrl`: Link zur Online-Buchung (z. B. Doctolib). Leer = „Termin buchen“ ruft die Praxis an.
+- `hours` und `acuteHours`: Sprechzeiten und Akutsprechstunde. Daraus berechnet die Seite automatisch
+  „Jetzt geöffnet · bis 12:00 Uhr“ bzw. „Wieder geöffnet: Montag ab 08:00 Uhr“.
+- `notices`: Praxis-Hinweise (Urlaub, Grippeimpfung …) mit Start- und Enddatum – erscheinen nur in diesem Zeitraum.
+- `directions`: Bus & Bahn, Parken, Barrierefreiheit (leer = ausgeblendet).
+- `team`: Namen und Rollen des Teams.
+- `jobs`: aktive Stellenangebote (`"mfa"`, `"trainee"`), leeres Array = Initiativbewerbung.
+
+Außerdem: `impressum.html` und `datenschutz.html` – gelb markierte Platzhalter ersetzen und rechtlich prüfen lassen.
+
+## Fotos
+
+Fotos als `.jpg` in `assets/photos/` ablegen – sie erscheinen automatisch, bis dahin zeigt die Seite einen
+dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 1000 px, je unter 300 KB.
+
+| Dateiname | Wo | Format |
+|---|---|---|
+| `praxis-team.jpg` | Startseite „Willkommen“ | quer |
+| `gutachten.jpg` | Gutachten-Seite oben | quer |
+| `praxis-empfang.jpg` | Praxis → Räume | quer |
+| `praxis-wartebereich.jpg` | Praxis → Räume | quer |
+| `praxis-behandlungsraum.jpg` | Praxis → Räume | quer |
+| `praxis-labor.jpg` | Praxis → Räume | quer |
+| `team-mohammad-hussein.jpg` | Team → Arzt | hoch |
+| `team-2.jpg`, `team-3.jpg`, `team-4.jpg` | Team → Praxisteam (Namen in `config.js`) | hoch |
+
+Eigenes Logo: `assets/logo-mark.svg` (Symbol, auch Favicon) und `assets/logo.svg` (mit Schriftzug) ersetzen.
+
+## Texte und Sprachen
+
+Alle Texte liegen in `js/lang/de.js`, `en.js`, `ar.js`, `uk.js`, `ro.js` – gleiche Schlüssel in jeder Datei.
+Deutsch steht zusätzlich direkt im HTML (für Suchmaschinen und ohne JavaScript).
+Eine andere Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=en`.
+
+Farben: alle im `:root`-Block am Anfang von `css/styles.css`.
 
 ## Lokal ansehen
 
@@ -31,9 +67,9 @@ js/main.js          Sprachumschaltung, Sprechzeiten, „Jetzt geöffnet“-Statu
 python3 -m http.server 8000
 ```
 
-Dann <http://localhost:8000> öffnen. Eine Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=en`.
+Dann <http://localhost:8000> öffnen.
 
-## Datenschutz-Hinweis
+## Datenschutz
 
-Die Seite lädt bewusst keine externen Ressourcen (keine Google Fonts, keine eingebettete Karte, kein Tracking, keine Cookies).
-Google Maps wird nur über den Link „Route planen“ geöffnet.
+Die Seite lädt keine externen Ressourcen (keine Google Fonts, keine eingebettete Karte, kein Tracking, keine Cookies).
+Google Maps öffnet sich nur über den Link „Route planen“. Kein Kontaktformular – Anfragen laufen per Telefon oder E-Mail.
