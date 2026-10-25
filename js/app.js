@@ -23,6 +23,19 @@
 
   var lang = "de";
 
+  // Farbpaletten-Vorschau: ?palette=2 … 5 (1 = Standard). Bleibt beim Navigieren erhalten.
+  var palette = (function () {
+    var p = new URLSearchParams(location.search).get("palette");
+    return /^[1-5]$/.test(p || "") ? p : null;
+  })();
+  function applyPalette(p) {
+    palette = p;
+    if (p && p !== "1") document.documentElement.setAttribute("data-palette", p);
+    else document.documentElement.removeAttribute("data-palette");
+    each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
+  }
+  if (palette) applyPalette(palette);
+
   function t(key) {
     var dict = I18N[lang] || I18N.de;
     if (dict[key] != null) return dict[key];
@@ -56,6 +69,13 @@
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',
     alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>'
   };
+  function logo(size) {
+    return '<svg class="logo-mark" aria-hidden="true" viewBox="0 0 64 64" width="' + size + '" height="' + size + '" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">' +
+      '<rect class="lm-bg" width="64" height="64" rx="16" stroke="none"/>' +
+      '<path class="lm-house" d="M14 30.5 32 15l18 15.5M19 27v19a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V27"/>' +
+      '<path class="lm-cross" d="M32 31v12M26 37h12"/></svg>';
+  }
+
   function icon(name, size) {
     var s = size || 18;
     return '<svg aria-hidden="true" viewBox="0 0 24 24" width="' + s + '" height="' + s + '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ICONS[name] + "</svg>";
@@ -84,7 +104,7 @@
       "</div></div>" +
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
-          '<img src="assets/logo-mark.svg" alt="" width="44" height="44">' +
+          logo(44) +
           '<span class="brand-text"><strong>Hausarzt Praxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
         '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav + "</nav>" +
@@ -109,7 +129,7 @@
       '<footer class="site-footer"><div class="container">' +
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
-            '<a class="brand" href="index.html"><img src="assets/logo-mark.svg" alt="" width="40" height="40">' +
+            '<a class="brand" href="index.html">' + logo(40) +
             '<span class="brand-text"><strong>Hausarzt Praxis</strong><span>Hilden Nord</span></span></a>' +
             '<p data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
             '<p class="footer-langs" dir="ltr">DE · AR · UK · RO · EN</p>' +
@@ -186,14 +206,33 @@
     });
   }
 
-  // Links innerhalb der Seite behalten die gewählte Sprache auch ohne Speicher.
+  // Links innerhalb der Seite behalten Sprache und Paletten-Vorschau auch ohne Speicher.
   function keepLangInLinks(e) {
     var a = e.target.closest && e.target.closest("a[href$='.html'], a[href*='.html#']");
-    if (!a || lang === "de" || a.target) return;
+    if (!a || a.target || (lang === "de" && !palette)) return;
     var url = new URL(a.getAttribute("href"), location.href);
     if (url.origin !== location.origin) return;
-    url.searchParams.set("lang", lang);
+    if (lang !== "de") url.searchParams.set("lang", lang);
+    if (palette) url.searchParams.set("palette", palette);
     a.href = url.pathname + url.search + url.hash;
+  }
+
+  var PALETTE_COLORS = ["#1A6FB5", "#0B4F8A", "#0E7490", "#4F5BD5", "#2563A8"];
+  function renderPaletteSwitch() {
+    if (!palette) return;
+    var bar = el("div", { class: "palette-switch", role: "group", "aria-label": "Farbpalette" });
+    PALETTE_COLORS.forEach(function (c, i) {
+      var b = el("button", { type: "button", value: String(i + 1), style: "background:" + c, text: String(i + 1) });
+      b.addEventListener("click", function () {
+        applyPalette(b.value);
+        var url = new URL(location.href);
+        url.searchParams.set("palette", b.value);
+        history.replaceState(null, "", url);
+      });
+      bar.appendChild(b);
+    });
+    document.body.appendChild(bar);
+    applyPalette(palette);
   }
 
   // ---------------------------------------------------------------- Practice data
@@ -470,6 +509,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     renderFooter();
     renderContact();
+    renderPaletteSwitch();
     initNav();
     loadPhotos();
     each(".js-lang-switch", function (s) { s.addEventListener("change", function () { setLang(s.value); }); });

@@ -22,6 +22,12 @@
   --container: 1160px;
 }
 
+/* Alternative Farbpaletten (Vorschau: ?palette=2 … ?palette=5). Palette 1 ist :root oben. */
+:root[data-palette="2"] { --ink: #0A1F33; --ink-soft: #4B5B6B; --primary: #0B4F8A; --primary-dark: #083B68; --primary-soft: #E3EEF8; --primary-softer: #CCE0F2; --on-dark: #7CC4EE; --footer: #071726; --accent: #3BA7E0; --accent-hover: #5DB8E8; --sand: #F4F7FA; --line: #DCE4EC; }
+:root[data-palette="3"] { --ink: #0B2530; --ink-soft: #4A6069; --primary: #0E7490; --primary-dark: #0A5669; --primary-soft: #E0F2F7; --primary-softer: #C8E7EF; --on-dark: #86D3E6; --footer: #081B23; --accent: #F2B544; --accent-hover: #F5C366; --sand: #F2F8FA; --line: #DAE7EB; }
+:root[data-palette="4"] { --ink: #1B1F3B; --ink-soft: #555A77; --primary: #4F5BD5; --primary-dark: #3A44A8; --primary-soft: #ECEEFC; --primary-softer: #DCE0FA; --on-dark: #AEB5F5; --footer: #13162B; --accent: #F28C8C; --accent-hover: #F5A3A3; --sand: #F6F6FB; --line: #E2E3F0; }
+:root[data-palette="5"] { --ink: #1F2A37; --ink-soft: #5B6573; --primary: #2563A8; --primary-dark: #1B4C82; --primary-soft: #E8EFF7; --primary-softer: #D3E1F0; --on-dark: #A9C8EA; --footer: #18212C; --accent: #C8A97E; --accent-hover: #D4B993; --sand: #F7F4EE; --line: #E6E1D8; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
@@ -226,7 +232,12 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .checklist li { position: relative; padding-inline-start: 34px; }
 .checklist li::before {
   content: ""; position: absolute; inset-inline-start: 0; top: .2em; width: 22px; height: 22px; border-radius: 50%;
-  background: var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m7 12.5 3 3 7-7' fill='none' stroke='%231A6FB5' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 16px no-repeat;
+  background: var(--primary-soft);
+}
+.checklist li::after {
+  content: ""; position: absolute; inset-inline-start: 3px; top: calc(.2em + 3px); width: 16px; height: 16px; background: var(--primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m7 12.5 3 3 7-7' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m7 12.5 3 3 7-7' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .note { font-size: .93rem; color: var(--ink-soft); margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
 
@@ -474,6 +485,28 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .footer-bottom p { margin: 0; }
 .footer-legal { display: flex; gap: 20px; }
 
+/* ---- Logo (inline, folgt der Farbpalette) ---- */
+
+.logo-mark { flex-shrink: 0; }
+.logo-mark .lm-bg { fill: var(--primary-soft); }
+.logo-mark .lm-house { stroke: var(--primary); }
+.logo-mark .lm-cross { stroke: var(--accent); }
+.site-footer .logo-mark .lm-bg { fill: var(--white); }
+
+/* ---- Palette preview switcher (nur mit ?palette=…) ---- */
+
+.palette-switch {
+  position: fixed; inset-inline-start: 16px; bottom: 16px; z-index: 70;
+  display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px;
+  background: var(--white); box-shadow: 0 8px 30px rgba(0, 0, 0, .18); font-size: .8rem; font-weight: 650;
+}
+.palette-switch button {
+  width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--white); cursor: pointer;
+  color: var(--white); font: 700 .78rem/1 var(--font); box-shadow: 0 0 0 1px rgba(0, 0, 0, .12);
+}
+.palette-switch button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink); }
+@media (max-width: 760px) { .palette-switch { bottom: 84px; } }
+
 /* ---- Mobile action bar ---- */
 
 .action-bar { display: none; }
@@ -554,7 +587,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .header-actions { gap: 8px; }
   .header-actions .btn-sm { display: none; }
   .brand { gap: 8px; min-width: 0; }
-  .brand img { width: 38px; height: 38px; }
+  .brand img, .brand .logo-mark { width: 38px; height: 38px; }
   .brand-text strong { font-size: .92rem; }
   .brand-text span { font-size: .7rem; }
   .topbar-inner { gap: 10px; font-size: .8rem; }

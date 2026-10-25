@@ -59,7 +59,9 @@ Alle Texte liegen in `js/lang/de.js`, `en.js`, `ar.js`, `uk.js`, `ro.js` – gle
 Deutsch steht zusätzlich direkt im HTML (für Suchmaschinen und ohne JavaScript).
 Eine andere Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=en`.
 
-Farben: alle im `:root`-Block am Anfang von `css/styles.css`.
+Farben: alle im `:root`-Block am Anfang von `css/styles.css`. Vier weitere Paletten zum Vergleichen:
+`?palette=2` … `?palette=5` an eine Adresse anhängen (z. B. `index.html?palette=2`) – unten links erscheint
+dann eine Leiste zum Umschalten. Ohne Parameter sehen Besucher immer Palette 1.
 
 ## Lokal ansehen
 
