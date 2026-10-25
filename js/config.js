@@ -10,6 +10,9 @@ window.PRAXIS = {
   fax: "",                           // optional, leer = ausgeblendet
   email: "info@hausarzt-hilden-nord.de", // TODO: echte E-Mail
 
+  // Nur für Vorschauen: zeigt unten links die Leiste zum Umschalten der Farbpaletten.
+  previewPalettes: false,
+
   // Online-Terminbuchung (z. B. Doctolib-Link). Leer = Button ruft die Praxis an.
   bookingUrl: "",
 

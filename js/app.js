@@ -10,7 +10,9 @@
   var RTL = ["ar"];
   var DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
   var STORAGE_KEY = "praxis-lang";
-  var PAGE = document.body.getAttribute("data-page") || "";
+  // Seitenname aus <body data-page> – oder aus window.PRAXIS_PAGE, wo der <body> nicht selbst geschrieben wird.
+  var PAGE = document.body.getAttribute("data-page") || window.PRAXIS_PAGE || "";
+  var TITLE_KEY = document.body.getAttribute("data-title") || window.PRAXIS_TITLE || "";
 
   var NAV = [
     ["praxis.html", "nav.practice", "praxis"],
@@ -24,12 +26,17 @@
   var lang = "de";
 
   // Farbpaletten-Vorschau: ?palette=2 … 5 (1 = Standard). Bleibt beim Navigieren erhalten.
+  // Mit PRAXIS.previewPalettes = true ist die Leiste immer sichtbar und die Wahl wird gespeichert.
   var palette = (function () {
     var p = new URLSearchParams(location.search).get("palette");
-    return /^[1-5]$/.test(p || "") ? p : null;
+    if (/^[1-5]$/.test(p || "")) return p;
+    if (!P.previewPalettes) return null;
+    try { p = localStorage.getItem("praxis-palette"); } catch (e) { p = null; }
+    return /^[1-5]$/.test(p || "") ? p : "1";
   })();
   function applyPalette(p) {
     palette = p;
+    if (P.previewPalettes) { try { localStorage.setItem("praxis-palette", p); } catch (e) { /* ignore */ } }
     if (p && p !== "1") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
     each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
@@ -195,9 +202,7 @@
           node.setAttribute(parts[0], t(parts[1]));
         });
       });
-      if (document.body.hasAttribute("data-title")) {
-        document.title = t(document.body.getAttribute("data-title")) + " – " + P.name;
-      }
+      if (TITLE_KEY) document.title = t(TITLE_KEY) + " – " + P.name;
 
       each(".js-lang-switch", function (s) { s.value = lang; });
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
