@@ -57,8 +57,8 @@ dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 10
   Quelle `assets/logo-3d/logo-3d.blend`, 3D-Modell für Web/AR `logo-3d.glb`, Großbilder `logo-3d-hero.png` und
   `logo-3d-1024.png`. Je Farbpalette ein Kopfzeilen-Bild `emblem-p1.webp` … `emblem-p5.webp`.
   Neu rendern (Blender-Python-Modul `bpy` und `shapely` nötig): `python assets/logo-3d/logo3d.py <ausgabeordner>`.
-- **Drehendes Emblem (Startseite):** `emblem-spin.webp` (72 Bilder, 3,6 s pro Umdrehung) und Standbild `emblem-spin-poster.webp`.
-  Erzeugen: `python assets/logo-3d/logo3d.py <ordner> --spin 72`, dann `python assets/logo-3d/assemble.py <ordner>/spin assets/logo-3d`.
+- **Drehendes Emblem (Startseite):** `emblem-spin.webp` (120 Bilder, 6 s pro Umdrehung) und Standbild `emblem-spin-poster.webp`.
+  Erzeugen: `python assets/logo-3d/logo3d.py <ordner> --spin 120`, dann `python assets/logo-3d/assemble.py <ordner>/spin assets/logo-3d`.
   Die Seite zeigt zuerst das Standbild und lädt die Drehung nach; bei „Bewegung reduzieren“ bleibt das Standbild.
 - **Flache Varianten:** `assets/logo-mark.svg` (Favicon) und `assets/logo.svg` (mit Schriftzug, z. B. für Briefpapier).
 - **Homescreen-Icon:** `assets/apple-touch-icon.png`.

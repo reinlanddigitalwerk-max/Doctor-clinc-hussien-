@@ -13,6 +13,7 @@ OUT = sys.argv[1]
 QUICK = "--quick" in sys.argv
 SPIN = int(sys.argv[sys.argv.index("--spin") + 1]) if "--spin" in sys.argv else 0
 os.makedirs(OUT, exist_ok=True)
+BASE = os.environ.get("EMBLEM_PALETTE", "p5")  # Palette der Website (aktuell 5: Ozeanblau & Sand)
 
 PALETTES = {  # Primärfarbe je Farbpalette der Website
     "p1": "#1A6FB5", "p2": "#0B4F8A", "p3": "#0E7490", "p4": "#4F5BD5", "p5": "#2563A8",
@@ -50,7 +51,7 @@ def material(name, color, rough, coat=0.0, metallic=0.0):
     b.inputs["Coat Roughness"].default_value = 0.18
     return m
 
-mat_blue = material("Praxisblau", srgb_to_linear(PALETTES["p1"]), 0.32, coat=0.9)
+mat_blue = material("Praxisblau", srgb_to_linear(PALETTES[BASE]), 0.32, coat=0.9)
 mat_blue.node_tree.nodes["Principled BSDF"].inputs["Coat Roughness"].default_value = 0.04
 mat_white = material("Weiß", (0.97, 0.975, 0.985, 1), 0.22, coat=0.6)
 mat_ring = material("Siegelring", (0.86, 0.89, 0.93, 1), 0.12, metallic=1.0)
@@ -192,7 +193,7 @@ for key, hexcolor in PALETTES.items():
     set_blue(hexcolor)
     render(f"{OUT}/logo-3d-{key}.png", (256, 256), (0, -1.0, 6.6), 100, rot=(0, 0, 0), samples=48 if QUICK else 96)
     if QUICK: break
-set_blue(PALETTES["p1"])
+set_blue(PALETTES[BASE])
 # 3) Großes App-/Social-Bild, Frontansicht
 if not QUICK:
     render(f"{OUT}/logo-3d-1024.png", (1024, 1024), (0, -1.0, 6.6), 100, samples=160)
