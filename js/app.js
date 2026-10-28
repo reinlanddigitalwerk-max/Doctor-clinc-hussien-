@@ -74,13 +74,15 @@
     phone: '<path fill="currentColor" stroke="none" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/>',
     globe: '<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/>',
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',
-    alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>'
+    alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>',
+    chevron: '<path d="m6 9 6 6 6-6"/>'
   };
+  // Praxis-Siegel: Dach + medizinisches Kreuz auf rundem Grund (Farben aus der Palette).
   function logo(size) {
-    return '<svg class="logo-mark" aria-hidden="true" viewBox="0 0 64 64" width="' + size + '" height="' + size + '" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">' +
-      '<rect class="lm-bg" width="64" height="64" rx="16" stroke="none"/>' +
-      '<path class="lm-house" d="M14 30.5 32 15l18 15.5M19 27v19a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V27"/>' +
-      '<path class="lm-cross" d="M32 31v12M26 37h12"/></svg>';
+    return '<svg class="logo-mark" aria-hidden="true" viewBox="0 0 64 64" width="' + size + '" height="' + size + '">' +
+      '<circle class="lm-bg" cx="32" cy="32" r="32"/>' +
+      '<path class="lm-roof" d="M15 31 32 16.5 49 31" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="lm-cross" d="M29 28h6v7h7v6h-7v7h-6v-7h-7v-6h7Z" stroke-width="1.5" stroke-linejoin="round"/></svg>';
   }
 
   function icon(name, size) {
@@ -97,25 +99,34 @@
       var current = n[2] === PAGE ? ' aria-current="page"' : "";
       return '<a href="' + n[0] + '"' + current + ' data-i18n="' + n[1] + '">' + t(n[1]) + "</a>";
     }).join("");
-    var options = LANGS.map(function (c) { return '<option value="' + c + '">' + LANG_NAMES[c] + "</option>"; }).join("");
+    var langItems = LANGS.map(function (c) {
+      return '<li><button type="button" role="menuitemradio" aria-checked="false" data-lang="' + c + '" lang="' + c + '">' +
+        '<span class="lang-code">' + c.toUpperCase() + "</span>" + LANG_NAMES[c] + "</button></li>";
+    }).join("");
 
     mount.outerHTML =
       '<a class="skip-link" href="#main" data-i18n="a11y.skip">' + t("a11y.skip") + "</a>" +
-      '<div class="topbar"><div class="container topbar-inner">' +
-        '<span class="tb-today"><span class="status-dot js-status-dot"></span><span class="js-status-text"></span><span class="tb-sep" aria-hidden="true">·</span><span class="js-status-detail"></span></span>' +
-        '<a class="tb-phone js-phone-link" href="tel:">' + icon("phone", 15) + '<span class="js-phone"></span></a>' +
-        '<span class="tb-emergency"><span data-i18n="topbar.emergency">' + t("topbar.emergency") + '</span> <b dir="ltr">112</b><span class="tb-sep" aria-hidden="true">·</span><span data-i18n="topbar.oncall">' + t("topbar.oncall") + '</span> <b dir="ltr">116 117</b></span>' +
-        '<label class="lang-select">' + icon("globe", 16) +
-          '<span class="sr-only" data-i18n="a11y.language">' + t("a11y.language") + "</span>" +
-          '<select class="js-lang-switch">' + options + "</select></label>" +
-      "</div></div>" +
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
-          logo(44) +
+          logo(46) +
           '<span class="brand-text"><strong>Hausarzt Praxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
-        '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav + "</nav>" +
-        '<div class="header-actions">' +
+        '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav +
+          '<div class="nav-extra">' +
+            '<a class="js-phone-link" href="tel:">' + icon("phone", 16) + '<span class="js-phone"></span></a>' +
+            '<p><span data-i18n="topbar.emergency">' + t("topbar.emergency") + '</span> <b dir="ltr">112</b> · ' +
+            '<span data-i18n="topbar.oncall">' + t("topbar.oncall") + '</span> <b dir="ltr">116 117</b></p>' +
+          "</div>" +
+        "</nav>" +
+        '<div class="header-tools">' +
+          '<a class="status-chip js-status-chip" href="sprechzeiten.html"><span class="status-dot js-status-dot"></span><span class="js-status-short"></span></a>' +
+          '<div class="lang-menu">' +
+            '<button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-list">' +
+              icon("globe", 17) + '<span class="js-lang-code">DE</span>' + icon("chevron", 14) +
+              '<span class="sr-only" data-i18n="a11y.language">' + t("a11y.language") + "</span>" +
+            "</button>" +
+            '<ul class="lang-list" id="lang-list" role="menu" hidden>' + langItems + "</ul>" +
+          "</div>" +
           '<a class="btn btn-primary btn-sm js-book" href="kontakt.html" data-i18n="cta.book">' + t("cta.book") + "</a>" +
           '<button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">' +
             '<span class="sr-only" data-i18n="a11y.menu">' + t("a11y.menu") + "</span>" +
@@ -124,6 +135,27 @@
         "</div>" +
       "</div></header>" +
       '<div class="notices js-notices" role="status"></div>';
+  }
+
+  function initLangMenu() {
+    var btn = document.querySelector(".lang-btn");
+    var list = document.getElementById("lang-list");
+    if (!btn || !list) return;
+    function open(state) {
+      btn.setAttribute("aria-expanded", String(state));
+      list.hidden = !state;
+      if (state) list.querySelector('[aria-checked="true"]').focus();
+    }
+    btn.addEventListener("click", function () { open(list.hidden); });
+    list.addEventListener("click", function (e) {
+      var item = e.target.closest("[data-lang]");
+      if (!item) return;
+      open(false);
+      btn.focus();
+      setLang(item.getAttribute("data-lang"));
+    });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".lang-menu")) open(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !list.hidden) { open(false); btn.focus(); } });
   }
 
   // ---------------------------------------------------------------- Footer
@@ -154,6 +186,8 @@
         "</div>" +
         '<div class="footer-bottom">' +
           '<p>© <span class="js-year"></span> ' + P.name + " · " + P.doctor + "</p>" +
+          '<p class="footer-emergency"><span data-i18n="topbar.emergency">' + t("topbar.emergency") + '</span> <b dir="ltr">112</b> · ' +
+            '<span data-i18n="topbar.oncall">' + t("topbar.oncall") + '</span> <b dir="ltr">116 117</b></p>' +
           '<nav class="footer-legal" aria-label="Rechtliches">' +
             '<a href="impressum.html" data-i18n="footer.imprint">' + t("footer.imprint") + "</a>" +
             '<a href="datenschutz.html" data-i18n="footer.privacy">' + t("footer.privacy") + "</a>" +
@@ -204,7 +238,8 @@
       });
       if (TITLE_KEY) document.title = t(TITLE_KEY) + " – " + P.name;
 
-      each(".js-lang-switch", function (s) { s.value = lang; });
+      each(".js-lang-code", function (node) { node.textContent = lang.toUpperCase(); });
+      each(".lang-list [data-lang]", function (b) { b.setAttribute("aria-checked", String(b.getAttribute("data-lang") === lang)); });
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
 
       renderDynamic();
@@ -390,7 +425,13 @@
 
     each(".js-status-text, .js-status", function (node) { node.textContent = t(statusKey); });
     each(".js-status, .js-status-dot", function (node) { node.classList.toggle("is-open", open); });
-    each(".js-status-detail", function (node) { node.textContent = statusDetail(now, slots); });
+    var detail = statusDetail(now, slots);
+    each(".js-status-detail", function (node) { node.textContent = detail; });
+    each(".js-status-short", function (node) { node.textContent = t(open ? "status.short.open" : "status.short.closed"); });
+    each(".js-status-chip", function (node) {
+      node.classList.toggle("is-open", open);
+      node.title = t(statusKey) + (detail ? " · " + detail : "");
+    });
     each(".js-today-title", function (node) { node.textContent = t("info.today") + " · " + t("day." + key); });
     each(".js-today-hours", function (node) { node.textContent = slots.length ? slots.join(" · ") : t("hours.closed"); });
 
@@ -517,7 +558,7 @@
     renderPaletteSwitch();
     initNav();
     loadPhotos();
-    each(".js-lang-switch", function (s) { s.addEventListener("change", function () { setLang(s.value); }); });
+    initLangMenu();
     document.addEventListener("click", keepLangInLinks);
     setLang(initialLang());
     setInterval(renderToday, 60 * 1000);

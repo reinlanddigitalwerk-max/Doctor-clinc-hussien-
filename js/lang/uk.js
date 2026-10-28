@@ -23,6 +23,8 @@ window.I18N.uk = {
   "status.openNow": "Зараз відчинено",
   "status.closedNow": "Зараз зачинено",
   "status.closedToday": "Сьогодні зачинено",
+  "status.short.open": "Відчинено",
+  "status.short.closed": "Зачинено",
   "services.eyebrow": "Послуги",
   "services.title": "Чим ми допомагаємо",
   "services.lead": "Від гострої застуди до довготривалого супроводу – ми ваш перший контакт з усіх питань здоров’я.",

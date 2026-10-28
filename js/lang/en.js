@@ -23,6 +23,8 @@ window.I18N.en = {
   "status.openNow": "Open now",
   "status.closedNow": "Currently closed",
   "status.closedToday": "Closed today",
+  "status.short.open": "Open",
+  "status.short.closed": "Closed",
   "services.eyebrow": "Services",
   "services.title": "How we can help",
   "services.lead": "From an acute cold to long-term care – we are your first point of contact for every health question.",

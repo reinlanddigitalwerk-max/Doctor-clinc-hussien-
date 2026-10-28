@@ -23,6 +23,8 @@ window.I18N.ro = {
   "status.openNow": "Deschis acum",
   "status.closedNow": "Închis momentan",
   "status.closedToday": "Închis astăzi",
+  "status.short.open": "Deschis",
+  "status.short.closed": "Închis",
   "services.eyebrow": "Servicii",
   "services.title": "Cum vă putem ajuta",
   "services.lead": "De la o răceală acută până la îngrijirea pe termen lung – suntem primul dvs. punct de contact pentru orice problemă de sănătate.",

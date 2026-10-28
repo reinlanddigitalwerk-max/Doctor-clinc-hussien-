@@ -23,6 +23,8 @@ window.I18N.ar = {
   "status.openNow": "مفتوح الآن",
   "status.closedNow": "مغلق حاليًا",
   "status.closedToday": "مغلق اليوم",
+  "status.short.open": "مفتوح",
+  "status.short.closed": "مغلق",
   "services.eyebrow": "الخدمات",
   "services.title": "كيف نساعدكم",
   "services.lead": "من نزلة البرد إلى المتابعة طويلة الأمد – نحن نقطة الاتصال الأولى لكل أسئلتكم الصحية.",

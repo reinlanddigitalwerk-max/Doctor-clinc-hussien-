@@ -23,6 +23,8 @@ window.I18N.de = {
   "status.openNow": "Jetzt geöffnet",
   "status.closedNow": "Zurzeit geschlossen",
   "status.closedToday": "Heute geschlossen",
+  "status.short.open": "Geöffnet",
+  "status.short.closed": "Geschlossen",
   "services.eyebrow": "Leistungen",
   "services.title": "Was wir für Sie tun",
   "services.lead": "Von der akuten Erkältung bis zur langfristigen Begleitung – wir sind Ihre erste Anlaufstelle für alle gesundheitlichen Fragen.",
