@@ -19,31 +19,31 @@
 @font-face { font-family: "Noto Sans Arabic"; font-style: normal; font-weight: 700; font-display: swap; src: url("../assets/fonts/noto-sans-arabic-arabic-700-normal.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1; }
 
 :root {
-  --ink: #0F2236;
-  --ink-soft: #4A5D70;
-  --primary: #1A6FB5;
-  --primary-dark: #11528A;
-  --primary-soft: #E6F0FA;
-  --primary-softer: #D4E5F6;
-  --on-dark: #9CC8F0;
-  --footer: #0B1A2A;
-  --accent: #e98a4f;
-  --accent-hover: #f29d67;
-  --sand: #F3F6FA;
-  --line: #DFE6EE;
+  --ink: #1F2A37;
+  --ink-soft: #5B6573;
+  --primary: #2563A8;
+  --primary-dark: #1B4C82;
+  --primary-soft: #E8EFF7;
+  --primary-softer: #D3E1F0;
+  --on-dark: #A9C8EA;
+  --footer: #18212C;
+  --accent: #C8A97E;
+  --accent-hover: #D4B993;
+  --sand: #F7F4EE;
+  --line: #E6E1D8;
   --white: #ffffff;
   --radius: 20px;
   --radius-sm: 12px;
-  --shadow: 0 10px 30px rgba(15, 34, 54, 0.08);
+  --shadow: 0 10px 30px rgba(31, 42, 55, 0.08);
   --font: "Source Sans 3", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --container: 1160px;
 }
 
-/* Alternative Farbpaletten (Vorschau: ?palette=2 … ?palette=5). Palette 1 ist :root oben. */
+/* Alternative Farbpaletten (Vorschau: ?palette=1 … ?palette=4). Gewählt ist Palette 5 („Ozeanblau & Sand“) = :root oben. */
+:root[data-palette="1"] { --ink: #0F2236; --ink-soft: #4A5D70; --primary: #1A6FB5; --primary-dark: #11528A; --primary-soft: #E6F0FA; --primary-softer: #D4E5F6; --on-dark: #9CC8F0; --footer: #0B1A2A; --accent: #e98a4f; --accent-hover: #f29d67; --sand: #F3F6FA; --line: #DFE6EE; }
 :root[data-palette="2"] { --ink: #0A1F33; --ink-soft: #4B5B6B; --primary: #0B4F8A; --primary-dark: #083B68; --primary-soft: #E3EEF8; --primary-softer: #CCE0F2; --on-dark: #7CC4EE; --footer: #071726; --accent: #3BA7E0; --accent-hover: #5DB8E8; --sand: #F4F7FA; --line: #DCE4EC; }
 :root[data-palette="3"] { --ink: #0B2530; --ink-soft: #4A6069; --primary: #0E7490; --primary-dark: #0A5669; --primary-soft: #E0F2F7; --primary-softer: #C8E7EF; --on-dark: #86D3E6; --footer: #081B23; --accent: #F2B544; --accent-hover: #F5C366; --sand: #F2F8FA; --line: #DAE7EB; }
 :root[data-palette="4"] { --ink: #1B1F3B; --ink-soft: #555A77; --primary: #4F5BD5; --primary-dark: #3A44A8; --primary-soft: #ECEEFC; --primary-softer: #DCE0FA; --on-dark: #AEB5F5; --footer: #13162B; --accent: #F28C8C; --accent-hover: #F5A3A3; --sand: #F6F6FB; --line: #E2E3F0; }
-:root[data-palette="5"] { --ink: #1F2A37; --ink-soft: #5B6573; --primary: #2563A8; --primary-dark: #1B4C82; --primary-soft: #E8EFF7; --primary-softer: #D3E1F0; --on-dark: #A9C8EA; --footer: #18212C; --accent: #C8A97E; --accent-hover: #D4B993; --sand: #F7F4EE; --line: #E6E1D8; }
 
 :root[lang="ar"] { --font: "Noto Sans Arabic", "Source Sans 3", Tahoma, Arial, sans-serif; }
 

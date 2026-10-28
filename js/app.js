@@ -25,19 +25,19 @@
 
   var lang = "de";
 
-  // Farbpaletten-Vorschau: ?palette=2 … 5 (1 = Standard). Bleibt beim Navigieren erhalten.
+  // Farbpaletten-Vorschau: ?palette=1 … 4 (5 = gewählte Palette „Ozeanblau & Sand“). Bleibt beim Navigieren erhalten.
   // Mit PRAXIS.previewPalettes = true ist die Leiste immer sichtbar und die Wahl wird gespeichert.
   var palette = (function () {
     var p = new URLSearchParams(location.search).get("palette");
     if (/^[1-5]$/.test(p || "")) return p;
     if (!P.previewPalettes) return null;
     try { p = localStorage.getItem("praxis-palette"); } catch (e) { p = null; }
-    return /^[1-5]$/.test(p || "") ? p : "1";
+    return /^[1-5]$/.test(p || "") ? p : "5";
   })();
   function applyPalette(p) {
     palette = p;
     if (P.previewPalettes) { try { localStorage.setItem("praxis-palette", p); } catch (e) { /* ignore */ } }
-    if (p && p !== "1") document.documentElement.setAttribute("data-palette", p);
+    if (p && p !== "5") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
     each(".js-emblem", function (img) { img.src = emblemSrc(); });
     each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
@@ -79,7 +79,7 @@
     chevron: '<path d="m6 9 6 6 6-6"/>'
   };
   // Praxis-Siegel als 3D-Rendering aus Blender (assets/logo-3d), je Farbpalette eine Datei.
-  function emblemSrc() { return "assets/logo-3d/emblem-p" + (palette || "1") + ".webp"; }
+  function emblemSrc() { return "assets/logo-3d/emblem-p" + (palette || "5") + ".webp"; }
   function logo(size) {
     return '<img class="logo-mark js-emblem" src="' + emblemSrc() + '" width="' + size + '" height="' + size + '" alt="" decoding="async">';
   }

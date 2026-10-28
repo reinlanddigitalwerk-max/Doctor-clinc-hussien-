@@ -69,9 +69,9 @@ Alle Texte liegen in `js/lang/de.js`, `en.js`, `ar.js`, `uk.js`, `ro.js` – gle
 Deutsch steht zusätzlich direkt im HTML (für Suchmaschinen und ohne JavaScript).
 Eine andere Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=en`.
 
-Farben: alle im `:root`-Block am Anfang von `css/styles.css`. Vier weitere Paletten zum Vergleichen:
-`?palette=2` … `?palette=5` an eine Adresse anhängen (z. B. `index.html?palette=2`) – unten links erscheint
-dann eine Leiste zum Umschalten. Ohne Parameter sehen Besucher immer Palette 1.
+Farben: gewählt ist Palette 5 „Ozeanblau & Sand“ – alle Werte im `:root`-Block am Anfang von `css/styles.css`.
+Die anderen Paletten bleiben zum Vergleichen erhalten: `?palette=1` … `?palette=4` an eine Adresse anhängen
+(z. B. `index.html?palette=1`) – unten links erscheint dann eine Leiste zum Umschalten.
 
 ## Lokal ansehen
 
