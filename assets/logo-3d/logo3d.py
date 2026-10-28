@@ -1,7 +1,8 @@
 """3D-Logo der Hausarzt Praxis Hilden Nord (Blender / bpy).
 
 Medaille mit Dach und medizinischem Kreuz – aus denselben Koordinaten wie das SVG-Logo (64er-Raster).
-Aufruf: python logo3d.py <ausgabeordner> [--quick]
+Aufruf: python logo3d.py <ausgabeordner> [--quick] [--spin <frames>]
+  --spin: rendert eine volle Drehung (Einzelbilder in <ausgabeordner>/spin/) statt der Standbilder.
 """
 import math, sys, os
 import bpy, bmesh
@@ -10,6 +11,7 @@ from shapely.geometry import LineString, Polygon
 
 OUT = sys.argv[1]
 QUICK = "--quick" in sys.argv
+SPIN = int(sys.argv[sys.argv.index("--spin") + 1]) if "--spin" in sys.argv else 0
 os.makedirs(OUT, exist_ok=True)
 
 PALETTES = {  # Primärfarbe je Farbpalette der Website
@@ -48,9 +50,10 @@ def material(name, color, rough, coat=0.0, metallic=0.0):
     b.inputs["Coat Roughness"].default_value = 0.18
     return m
 
-mat_blue = material("Praxisblau", srgb_to_linear(PALETTES["p1"]), 0.45, coat=0.22)
-mat_white = material("Weiß", (0.97, 0.975, 0.985, 1), 0.3, coat=0.2)
-mat_ring = material("Siegelring", (0.80, 0.86, 0.93, 1), 0.25, metallic=0.35)
+mat_blue = material("Praxisblau", srgb_to_linear(PALETTES["p1"]), 0.32, coat=0.9)
+mat_blue.node_tree.nodes["Principled BSDF"].inputs["Coat Roughness"].default_value = 0.04
+mat_white = material("Weiß", (0.97, 0.975, 0.985, 1), 0.22, coat=0.6)
+mat_ring = material("Siegelring", (0.86, 0.89, 0.93, 1), 0.12, metallic=1.0)
 
 # ---------------------------------------------------------------- Geometrie
 root = bpy.data.objects.new("Logo", None)
@@ -104,6 +107,17 @@ extrude_polygon("Kreuz", cross, RELIEF, mat_white)
 bpy.ops.mesh.primitive_torus_add(major_radius=0.875, minor_radius=0.016, major_segments=192, minor_segments=24, location=(0, 0, FRONT))
 ring = bpy.context.object; ring.name = "Siegelring"; ring.data.materials.append(mat_ring); bpy.ops.object.shade_smooth(); ring.parent = root
 
+# Rückseite: dasselbe Motiv, um 180° gedreht – nach einer halben Drehung seitenrichtig lesbar
+for name in ("Dach", "Kreuz", "Siegelring"):
+    src = bpy.data.objects[name]
+    back = src.copy(); back.data = src.data
+    back.name = name + " (Rückseite)"
+    scene.collection.objects.link(back)
+    back.parent = root
+    back.rotation_euler = (0, math.pi, 0)
+    if name == "Siegelring":
+        back.location = (0, 0, -FRONT)
+
 # ---------------------------------------------------------------- Licht
 def area(name, loc, energy, size, color=(1, 1, 1)):
     d = bpy.data.lights.new(name, "AREA"); d.energy = energy; d.size = size; d.color = color
@@ -114,6 +128,8 @@ def area(name, loc, energy, size, color=(1, 1, 1)):
 area("Hauptlicht", (-3.2, 2.6, 4.6), 300, 6.0)
 area("Aufhellung", (3.6, -1.0, 2.6), 90, 5.0, (0.92, 0.96, 1.0))
 area("Kante", (1.5, 3.8, -0.6), 220, 2.5)
+glint = area("Glanzstreifen", (2.2, 3.4, 3.8), 260, 1.0)
+glint.data.shape = "RECTANGLE"; glint.data.size = 6.0; glint.data.size_y = 0.25
 world = bpy.data.worlds.new("Studio"); scene.world = world
 world.use_nodes = True
 world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.9, 0.92, 0.95, 1)
@@ -140,6 +156,34 @@ def render(path, res, cam_loc, lens, rot=(0, 0, 0), shadow=False, samples=None):
 
 def set_blue(hexcolor):
     mat_blue.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = srgb_to_linear(hexcolor)
+
+if SPIN:
+    # Volle Drehung um die senkrechte Achse, gleichmäßig und nahtlos (Bild N+1 = Bild 1)
+    scene.render.resolution_x = scene.render.resolution_y = 560
+    scene.render.resolution_percentage = 100
+    scene.render.use_persistent_data = True
+    scene.cycles.samples = 40
+    catcher.hide_render = True
+    cam.location = (0, -1.0, 6.6); cam_data.lens = 100
+    scene.frame_start, scene.frame_end = 1, SPIN
+    root.rotation_euler = (0, 0, 0); root.keyframe_insert("rotation_euler", index=1, frame=1)
+    root.rotation_euler = (0, 2 * math.pi, 0); root.keyframe_insert("rotation_euler", index=1, frame=SPIN + 1)
+    action = root.animation_data.action
+    for fc in getattr(action, "fcurves", []):
+        for kp in fc.keyframe_points: kp.interpolation = "LINEAR"
+    if not getattr(action, "fcurves", None):  # Blender 5: Kanäle in Layern/Slots
+        for layer in action.layers:
+            for strip in layer.strips:
+                for bag in strip.channelbags:
+                    for fc in bag.fcurves:
+                        for kp in fc.keyframe_points: kp.interpolation = "LINEAR"
+    os.makedirs(f"{OUT}/spin", exist_ok=True)
+    scene.render.filepath = f"{OUT}/spin/frame_"
+    scene.render.image_settings.file_format = "PNG"
+    scene.render.image_settings.color_mode = "RGBA"
+    bpy.ops.render.render(animation=True)
+    print("spin done")
+    sys.exit(0)
 
 # 1) Hauptmotiv: leicht gedreht, mit weichem Schatten
 render(f"{OUT}/logo-3d-hero.png", (1600, 1200) if not QUICK else (800, 600), (0, -2.4, 7.0), 70, rot=(0, 18, -6), shadow=True)
