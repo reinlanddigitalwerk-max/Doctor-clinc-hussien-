@@ -37,29 +37,20 @@
           </ul>
         </div>
 
-        <aside class="hero-card" aria-labelledby="today-title">
-          <div class="hero-card-head">
-            <span class="status js-status"></span>
-            <h2 id="today-title" class="js-today-title">Heute</h2>
+        <div class="hero-visual">
+          <div class="emblem-stage">
+            <img class="emblem-spin js-emblem-spin" src="assets/logo-3d/emblem-spin-poster.webp" data-anim="assets/logo-3d/emblem-spin.webp" width="480" height="480" alt="Praxis-Emblem: Dach und medizinisches Kreuz" data-i18n-attr="alt:hero.emblemAlt" fetchpriority="high">
           </div>
-          <p class="today-hours js-today-hours">–</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="today-strip" role="group" aria-labelledby="today-title">
+          <span class="status js-status"></span>
+          <p class="today-main"><strong id="today-title" class="js-today-title">Heute</strong> <span class="js-today-hours" dir="ltr">–</span></p>
           <p class="status-detail js-status-detail"></p>
-          <dl class="hero-facts">
-            <div class="js-acute-section js-acute-row">
-              <dt><span data-i18n="home.acuteToday">Akutsprechstunde heute</span></dt>
-              <dd class="js-acute-today" dir="ltr">–</dd>
-            </div>
-            <div>
-              <dt><span data-i18n="info.address">Adresse</span></dt>
-              <dd class="js-address">–</dd>
-            </div>
-            <div>
-              <dt><span data-i18n="doctor.langsTitle">Sprachen in der Praxis</span></dt>
-              <dd class="flag-row">DE · AR · UK · RO · EN</dd>
-            </div>
-          </dl>
-          <a class="btn btn-light btn-block" href="sprechzeiten.html" data-i18n="info.allHours">Alle Sprechzeiten</a>
-        </aside>
+          <p class="today-acute js-acute-section js-acute-row"><span data-i18n="home.acuteToday">Akutsprechstunde heute</span> <b class="js-acute-today" dir="ltr">–</b></p>
+          <a class="link-arrow" href="sprechzeiten.html" data-i18n="info.allHours">Alle Sprechzeiten</a>
+        </div>
       </div>
     </section>
 

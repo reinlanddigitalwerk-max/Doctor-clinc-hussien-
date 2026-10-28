@@ -211,30 +211,41 @@ p { margin: 0 0 1em; }
 }
 .badges .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
 
-.hero-card {
-  background: var(--white); border-radius: 28px; padding: 28px; box-shadow: var(--shadow);
-  border: 1px solid var(--line);
-}
-.hero-card-head { display: flex; flex-direction: column; gap: 10px; }
-.hero-card h2 { font-size: 1.35rem; margin: 0; }
 .status {
   align-self: flex-start; font-size: .82rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
-  background: #fbe9df; color: #9a4a1b;
+  background: #fbe9df; color: #9a4a1b; white-space: nowrap;
 }
 .status.is-open { background: var(--primary-soft); color: var(--primary-dark); }
 .status::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-inline-end: 7px; vertical-align: middle; }
-.today-hours { font-size: 1.5rem; font-weight: 700; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
-.status-detail { margin: 0 0 18px; color: var(--primary-dark); font-weight: 600; }
+.status-detail { margin: 0; color: var(--primary-dark); font-weight: 600; }
 .status-detail:empty { display: none; }
-[dir="rtl"] .today-hours { text-align: end; }
 
-.hero-facts { margin: 0 0 22px; display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
-.hero-facts dt { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); font-weight: 600; }
-[dir="rtl"] .hero-facts dt { letter-spacing: 0; font-size: .9rem; }
-.hero-facts dd { margin: 2px 0 0; font-weight: 600; }
-.hero-facts a { color: var(--ink); text-decoration: none; }
-.hero-facts a:hover { color: var(--primary); }
-.flag-row { letter-spacing: .08em; color: var(--primary-dark); }
+/* 3D-Emblem (Blender-Rendering, dreht sich) */
+.hero-visual { display: grid; place-items: center; }
+.emblem-stage { position: relative; width: min(440px, 100%); aspect-ratio: 1; display: grid; place-items: center; }
+.emblem-stage::before {
+  content: ""; position: absolute; inset: 6%; border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-soft) 0%, transparent 68%);
+}
+.emblem-stage::after {
+  content: ""; position: absolute; left: 24%; right: 24%; bottom: 3%; height: 7%; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(15, 34, 54, .2), transparent 70%);
+}
+.emblem-spin { position: relative; z-index: 1; width: 100%; height: auto; }
+
+/* Heute-Leiste unter dem Hero */
+.today-strip {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; margin-top: clamp(28px, 4vw, 44px);
+  padding: 16px 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.today-strip p { margin: 0; }
+.today-main { font-variant-numeric: tabular-nums; }
+.today-main strong { font-weight: 700; margin-inline-end: 6px; }
+.today-main span { font-weight: 600; }
+.today-acute { color: var(--ink-soft); }
+.today-acute b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.today-strip .link-arrow { margin-inline-start: auto; font-weight: 700; color: var(--primary); text-decoration: none; }
+.today-strip .link-arrow:hover { text-decoration: underline; }
 
 /* ---- Sections ---- */
 
@@ -587,6 +598,8 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .header-tools { margin-inline-start: auto; }
 
   .hero-grid, .split, .doctor, .doctor-feature, .page-hero-grid, .service-block { grid-template-columns: 1fr; }
+  .hero-visual { order: -1; }
+  .emblem-stage { width: min(260px, 70%); }
   .doctor-photo, .doctor-feature .photo { max-width: 340px; }
   .cards-3, .contact-cards, .greetings { grid-template-columns: repeat(2, 1fr); }
   .routes { grid-template-columns: repeat(2, 1fr); }
@@ -628,4 +641,6 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .hero-cta .btn { flex: 1 1 100%; }
   .lead { font-size: 1.08rem; }
   .info-list li { grid-template-columns: 1fr; gap: 0; }
+  .today-strip { padding: 14px 16px; gap: 8px 18px; }
+  .today-strip .link-arrow { margin-inline-start: 0; }
 }

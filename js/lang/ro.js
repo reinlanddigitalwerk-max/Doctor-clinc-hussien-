@@ -12,6 +12,7 @@ window.I18N.ro = {
   "cta.book": "Programare",
   "hero.title": "Medicul dvs. de familie în Hilden Nord",
   "hero.lead": "Îngrijire medicală personală și expertize medicale – cu timp pentru problemele dvs., în cinci limbi.",
+  "hero.emblemAlt": "Emblema cabinetului: acoperiș și cruce medicală",
   "hero.badge1": "Primim pacienți noi",
   "hero.badge2": "Asigurare de stat și privată",
   "hero.badge3": "Vorbim 5 limbi",
