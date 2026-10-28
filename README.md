@@ -51,7 +51,14 @@ dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 10
 | `team-mohammad-hussein.jpg` | Team → Arzt | hoch |
 | `team-2.jpg`, `team-3.jpg`, `team-4.jpg` | Team → Praxisteam (Namen in `config.js`) | hoch |
 
-Eigenes Logo: `assets/logo-mark.svg` (Symbol, auch Favicon) und `assets/logo.svg` (mit Schriftzug) ersetzen.
+## Logo
+
+- **3D-Emblem (Kopf- und Fußzeile):** in Blender modelliert – Medaille mit Dach und medizinischem Kreuz.
+  Quelle `assets/logo-3d/logo-3d.blend`, 3D-Modell für Web/AR `logo-3d.glb`, Großbilder `logo-3d-hero.png` und
+  `logo-3d-1024.png`. Je Farbpalette ein Kopfzeilen-Bild `emblem-p1.webp` … `emblem-p5.webp`.
+  Neu rendern (Blender-Python-Modul `bpy` und `shapely` nötig): `python assets/logo-3d/logo3d.py <ausgabeordner>`.
+- **Flache Varianten:** `assets/logo-mark.svg` (Favicon) und `assets/logo.svg` (mit Schriftzug, z. B. für Briefpapier).
+- **Homescreen-Icon:** `assets/apple-touch-icon.png`.
 
 ## Texte und Sprachen
 

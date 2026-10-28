@@ -512,13 +512,9 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .footer-emergency { color: var(--white); }
 .footer-emergency b { color: var(--on-dark); }
 
-/* ---- Logo (inline, folgt der Farbpalette) ---- */
+/* ---- Logo (3D-Rendering aus Blender, je Palette eine Datei) ---- */
 
-.logo-mark { flex-shrink: 0; }
-.logo-mark .lm-bg { fill: var(--primary); }
-.logo-mark .lm-roof { stroke: var(--white); }
-.logo-mark .lm-cross { fill: var(--white); stroke: var(--white); }
-.site-footer .logo-mark .lm-bg { fill: var(--primary); }
+.logo-mark { flex-shrink: 0; display: block; }
 
 /* ---- Palette preview switcher (nur mit ?palette=…) ---- */
 

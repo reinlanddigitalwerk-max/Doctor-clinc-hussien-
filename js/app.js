@@ -39,6 +39,7 @@
     if (P.previewPalettes) { try { localStorage.setItem("praxis-palette", p); } catch (e) { /* ignore */ } }
     if (p && p !== "1") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
+    each(".js-emblem", function (img) { img.src = emblemSrc(); });
     each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
   }
   if (palette) applyPalette(palette);
@@ -77,12 +78,10 @@
     alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>',
     chevron: '<path d="m6 9 6 6 6-6"/>'
   };
-  // Praxis-Siegel: Dach + medizinisches Kreuz auf rundem Grund (Farben aus der Palette).
+  // Praxis-Siegel als 3D-Rendering aus Blender (assets/logo-3d), je Farbpalette eine Datei.
+  function emblemSrc() { return "assets/logo-3d/emblem-p" + (palette || "1") + ".webp"; }
   function logo(size) {
-    return '<svg class="logo-mark" aria-hidden="true" viewBox="0 0 64 64" width="' + size + '" height="' + size + '">' +
-      '<circle class="lm-bg" cx="32" cy="32" r="32"/>' +
-      '<path class="lm-roof" d="M15 31 32 16.5 49 31" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path class="lm-cross" d="M29 28h6v7h7v6h-7v7h-6v-7h-7v-6h7Z" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+    return '<img class="logo-mark js-emblem" src="' + emblemSrc() + '" width="' + size + '" height="' + size + '" alt="" decoding="async">';
   }
 
   function icon(name, size) {
