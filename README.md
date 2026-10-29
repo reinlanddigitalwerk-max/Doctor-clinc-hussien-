@@ -112,5 +112,6 @@ Google Maps öffnet sich nur über den Link „Route planen“. Kein Kontaktform
 
 - `qr-website.svg` / `.png` (2000 × 2000 px) – nur der Code
 - `qr-website-mit-text.svg` / `.png` – mit Adresse darunter
+- `QR-Code-Hausarztpraxis-Hilden-Nord.pdf` – A4 zum Drucken (Seite 1: mit Praxisname und Adresse, Seite 2: nur der Code), Vektor
 
 Für Druck die SVG-Datei verwenden (beliebig skalierbar). Mindestgröße im Druck: ca. 2 × 2 cm.
