@@ -104,3 +104,13 @@ Dann <http://localhost:8000> öffnen.
 
 Die Seite lädt keine externen Ressourcen (keine Google Fonts, keine eingebettete Karte, kein Tracking, keine Cookies).
 Google Maps öffnet sich nur über den Link „Route planen“. Kein Kontaktformular – Anfragen laufen per Telefon oder E-Mail.
+
+## QR-Code
+
+`assets/qr/` – QR-Code zur Website (https://www.hausarztpraxishildennord.de), Praxisblau mit Logo in der Mitte
+(Fehlerkorrektur H, mit jsQR geprüft):
+
+- `qr-website.svg` / `.png` (2000 × 2000 px) – nur der Code
+- `qr-website-mit-text.svg` / `.png` – mit Adresse darunter
+
+Für Druck die SVG-Datei verwenden (beliebig skalierbar). Mindestgröße im Druck: ca. 2 × 2 cm.
