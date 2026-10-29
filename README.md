@@ -56,7 +56,7 @@ dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 10
 - **Praxislogo:** `assets/logo-praxis.svg` – Herz aus Händen mit Familie, Kreuz, Stethoskop und EKG-Linie.
   Vektorisiert aus der Visitenkarte (die Vorlage war nur als kleines Bild im PDF enthalten). Liegt die Original-Vektordatei
   der Grafikerin/des Grafikers vor (AI, EPS, SVG oder PDF), bitte damit ersetzen.
-  Abgeleitet: `favicon-32.png`, `apple-touch-icon.png`, `logo-praxis-512.png`.
+  Abgeleitet: `favicon-32.png`, `apple-touch-icon.png`, `logo-praxis-512.png`, `logo-mono.png` (einfarbig, Wasserzeichen in Foto-Platzhaltern).
 - **3D-Logo (Startseite, drehend):** in Blender aus dem Vektor-Logo gebaut – weiße Medaille, Logo-Teile je Farbe erhaben, beidseitig.
   Dateien in `assets/logo-3d/`: `praxis-logo-3d.blend` (Quelle), `praxis-logo-3d.glb` (3D-Modell), `emblem-spin.webp`
   (Drehung, 120 Bilder, 6 s) und `emblem-spin-poster.webp` (Standbild). Erzeugen mit `praxis3d.py` und `assemble.py`.
@@ -71,6 +71,19 @@ Eine andere Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=
 Farben: gewählt ist Palette 5 „Ozeanblau & Sand“ – alle Werte im `:root`-Block am Anfang von `css/styles.css`.
 Die anderen Paletten bleiben zum Vergleichen erhalten: `?palette=1` … `?palette=4` an eine Adresse anhängen
 (z. B. `index.html?palette=1`) – unten links erscheint dann eine Leiste zum Umschalten.
+
+## Design-Regeln
+
+Im Repository liegt der Skill `ui-ux-pro-max` (`.claude/skills/ui-ux-pro-max`) mit Regeln zu Barrierefreiheit,
+Bedienung und Bewegung. Empfehlungen für Arztpraxen abrufen:
+
+```
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "medical clinic" --design-system
+```
+
+Umgesetzt sind u. a.: sichtbarer Fokusrahmen in Praxisblau, Fokus nie unter dem festen Kopf, Tipp-Feedback,
+sanftes Einblenden beim Scrollen (aus bei „Bewegung reduzieren“), Kontrast mind. 4,5 : 1.
+Farben und Schriften bleiben bewusst bei Palette 5 und den selbst gehosteten Schriften (keine Google Fonts, DSGVO).
 
 ## Lokal ansehen
 

@@ -540,6 +540,46 @@
     });
   }
 
+  // ---------------------------------------------------------------- Bewegung
+
+  // Schatten unter dem Kopf, sobald gescrollt wird.
+  function initHeaderShadow() {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+    var ticking = false;
+    function update() { header.classList.toggle("is-scrolled", window.scrollY > 8); ticking = false; }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+
+  // Abschnitte unterhalb des ersten Bildschirms blenden sanft ein; Karten nacheinander (40 ms Versatz).
+  function initReveal() {
+    if (!("IntersectionObserver" in window) || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+    var items = document.querySelectorAll(
+      "main .section .section-head, main .section .card, main .section .route, main .section .greeting, " +
+      "main .section .steps > li, main .section .panel, main .section .photo, main .section .contact-card"
+    );
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add("is-in");
+        observer.unobserve(el);
+        // danach Klassen entfernen, damit Hover-Effekte wieder greifen
+        setTimeout(function () { el.classList.remove("reveal", "is-in"); el.style.removeProperty("--reveal-delay"); }, 900);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    Array.prototype.forEach.call(items, function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight) return; // schon sichtbar: nicht verstecken
+      var index = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty("--reveal-delay", Math.min(index, 6) * 40 + "ms");
+      el.classList.add("reveal");
+      observer.observe(el);
+    });
+  }
+
   // ---------------------------------------------------------------- Navigation
 
   function initNav() {
@@ -574,6 +614,8 @@
     initNav();
     loadPhotos();
     initEmblemSpin();
+    initHeaderShadow();
+    initReveal();
     initLangMenu();
     document.addEventListener("click", keepLangInLinks);
     setLang(initialLang());
