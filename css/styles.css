@@ -200,7 +200,7 @@ p { margin: 0 0 1em; }
     radial-gradient(900px 400px at 15% -10%, var(--primary-soft), transparent 70%),
     linear-gradient(180deg, var(--white), var(--sand));
 }
-.hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 
 .eyebrow {
   display: inline-block; margin-bottom: 14px; font-size: .875rem; font-weight: 700;
@@ -232,16 +232,37 @@ p { margin: 0 0 1em; }
 
 /* 3D-Emblem (Blender-Rendering, dreht sich) */
 .hero-visual { display: grid; place-items: center; }
-.emblem-stage { position: relative; width: min(440px, 100%); aspect-ratio: 1; display: grid; place-items: center; }
-.emblem-stage::before {
-  content: ""; position: absolute; inset: 6%; border-radius: 50%;
-  background: radial-gradient(circle, var(--primary-soft) 0%, transparent 68%);
+
+/* Startfoto: langsamer Zoom beim Laden, danach ruhiges „Atmen“. Das Web-Logo liegt auf dem Wandlogo
+   (Lage in Prozent des Fotos: --wl-x/-y = Mitte, --wl-w = Breite) und bekommt einen Lichtstreifen. */
+.hero-photo {
+  --wl-x: 70.4%; --wl-y: 24.6%; --wl-w: 23.7%;
+  position: relative; width: 100%; margin: 0; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: var(--radius); background: var(--primary-soft); box-shadow: 0 24px 60px rgba(31, 42, 55, .16);
 }
-.emblem-stage::after {
-  content: ""; position: absolute; left: 24%; right: 24%; bottom: 3%; height: 7%; border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(15, 34, 54, .2), transparent 70%);
+.hero-photo-inner { position: absolute; inset: 0; animation: hero-in 1.6s cubic-bezier(.2, .7, .2, 1) both, hero-breathe 18s ease-in-out 1.6s infinite alternate; }
+.hero-photo-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wall-logo {
+  position: absolute; left: var(--wl-x); top: var(--wl-y); width: var(--wl-w); aspect-ratio: 964 / 988;
+  transform: translate(-50%, -50%);
+  -webkit-mask: url("../assets/logo-praxis.svg") center / contain no-repeat; mask: url("../assets/logo-praxis.svg") center / contain no-repeat;
 }
-.emblem-spin { position: relative; z-index: 1; width: 100%; height: auto; }
+.wall-logo img { display: block; width: 100%; height: 100%; animation: logo-glow 5s ease-in-out 1.8s infinite; }
+.wall-logo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .95) 50%, transparent 65%) no-repeat;
+  background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen;
+  animation: logo-shine 5s ease-in-out 1.8s infinite;
+}
+@keyframes hero-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+@keyframes hero-breathe { from { transform: none; } to { transform: scale(1.04); } }
+@keyframes logo-shine { 0% { background-position: 150% 0; } 45%, 100% { background-position: -50% 0; } }
+@keyframes logo-glow { 0%, 100% { filter: none; } 25% { filter: brightness(1.12) saturate(1.2); } }
+.hero-photo.is-missing { background: var(--primary-soft) url("../assets/logo-praxis.svg") center / 38% no-repeat; }
+.hero-photo.is-missing .hero-photo-inner { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-inner, .wall-logo img, .wall-logo::after { animation: none; }
+}
 
 /* Heute-Leiste unter dem Hero */
 .today-strip {
@@ -614,7 +635,6 @@ a.card { display: block; color: inherit; text-decoration: none; }
 
   .hero-grid, .split, .doctor, .doctor-feature, .page-hero-grid, .service-block { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
-  .emblem-stage { width: min(260px, 70%); }
   .doctor-photo, .doctor-feature .photo { max-width: 340px; }
   .cards-3, .contact-cards, .greetings { grid-template-columns: repeat(2, 1fr); }
   .routes { grid-template-columns: repeat(2, 1fr); }

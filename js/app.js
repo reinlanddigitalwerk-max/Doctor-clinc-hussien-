@@ -533,13 +533,12 @@
   // ---------------------------------------------------------------- 3D-Emblem
 
   // Erst das Standbild (schnell sichtbar), nach dem Laden der Seite die Drehung – außer bei „Bewegung reduzieren“.
-  function initEmblemSpin() {
-    var img = document.querySelector(".js-emblem-spin");
-    if (!img || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
-    window.addEventListener("load", function () {
-      var anim = new Image();
-      anim.onload = function () { img.src = anim.src; };
-      anim.src = img.getAttribute("data-anim");
+  // Startfoto: fehlt die Datei noch, zeigt der Rahmen das Praxislogo statt eines kaputten Bildes.
+  function initHeroPhoto() {
+    each(".js-hero-photo", function (fig) {
+      var img = fig.querySelector(".hero-photo-img");
+      function missing() { fig.classList.add("is-missing"); }
+      if (img.complete && !img.naturalWidth) missing(); else img.addEventListener("error", missing);
     });
   }
 
@@ -660,7 +659,7 @@
     renderPaletteSwitch();
     initNav();
     loadPhotos();
-    initEmblemSpin();
+    initHeroPhoto();
     initHeaderShadow();
     initMap();
     initReveal();

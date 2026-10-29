@@ -13,6 +13,7 @@ window.I18N.de = {
   "hero.title": "Ihre Hausarztpraxis in Hilden Nord",
   "hero.lead": "Persönliche hausärztliche Versorgung und ärztliche Gutachten – mit Zeit für Ihre Anliegen und in fünf Sprachen.",
   "hero.emblemAlt": "Praxislogo: Herz aus Händen mit Familie, Kreuz, Stethoskop und EKG-Linie",
+  "hero.photoAlt": "Arzt im Behandlungszimmer der Praxis mit Blutdruckmessgerät",
   "hero.badge1": "Neue Patientinnen und Patienten willkommen",
   "hero.badge2": "Gesetzlich & privat versichert",
   "hero.badge3": "Wir sprechen 5 Sprachen",

@@ -13,6 +13,7 @@ window.I18N.ro = {
   "hero.title": "Medicul dvs. de familie în Hilden Nord",
   "hero.lead": "Îngrijire medicală personală și expertize medicale – cu timp pentru problemele dvs., în cinci limbi.",
   "hero.emblemAlt": "Logoul cabinetului: o inimă din mâini cu o familie, cruce, stetoscop și linie EKG",
+  "hero.photoAlt": "Medic în cabinetul de consultații, cu tensiometrul în mână",
   "hero.badge1": "Primim pacienți noi",
   "hero.badge2": "Asigurare de stat și privată",
   "hero.badge3": "Vorbim 5 limbi",

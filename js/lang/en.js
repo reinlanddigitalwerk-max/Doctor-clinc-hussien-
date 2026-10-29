@@ -13,6 +13,7 @@ window.I18N.en = {
   "hero.title": "Your family doctor in Hilden Nord",
   "hero.lead": "Personal primary care and medical expert reports – with time for your concerns, in five languages.",
   "hero.emblemAlt": "Practice logo: a heart of hands with a family, cross, stethoscope and ECG line",
+  "hero.photoAlt": "Doctor in the practice's examination room holding a blood pressure monitor",
   "hero.badge1": "New patients welcome",
   "hero.badge2": "Public & private insurance",
   "hero.badge3": "We speak 5 languages",
