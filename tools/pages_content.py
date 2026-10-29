@@ -17,6 +17,48 @@ def service_block(anchor, icon, title, prefix, n, extra=""):
         </article>"""
 
 
+# Karte: erst gezeichnete Vorschau (keine Daten an Dritte), nach Klick Google Maps. Der Thermometer-Pin sitzt
+# immer in der Mitte – genau dort, wo Google die Adresse zentriert. Die Karte ist deshalb nicht verschiebbar.
+MAP = """
+        <div class="map js-map">
+          <div class="map-canvas js-map-canvas">
+            <svg class="map-bg" aria-hidden="true" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+              <rect width="800" height="400" class="mb-ground"/>
+              <rect x="30" y="30" width="200" height="120" rx="14" class="mb-block"/>
+              <rect x="270" y="20" width="90" height="140" rx="14" class="mb-block"/>
+              <rect x="460" y="30" width="150" height="120" rx="14" class="mb-park"/>
+              <rect x="650" y="20" width="140" height="150" rx="14" class="mb-block"/>
+              <rect x="20" y="250" width="160" height="130" rx="14" class="mb-block"/>
+              <rect x="220" y="250" width="140" height="120" rx="14" class="mb-park"/>
+              <rect x="460" y="250" width="110" height="130" rx="14" class="mb-block"/>
+              <rect x="610" y="240" width="180" height="140" rx="14" class="mb-block"/>
+              <path class="mb-road-edge" d="M-20 200H820M410 -20V420M-20 60 260 200M560 420 640 200 820 150"/>
+              <path class="mb-road" d="M-20 200H820M410 -20V420M-20 60 260 200M560 420 640 200 820 150"/>
+              <path class="mb-lane" d="M-20 200H820M410 -20V420"/>
+            </svg>
+          </div>
+          <a class="map-pin js-route" href="#" target="_blank" rel="noopener" aria-label="Route zur Praxis planen" data-i18n-attr="aria-label:map.pin">
+            <svg aria-hidden="true" viewBox="0 0 48 106" width="48" height="106">
+              <ellipse class="t-shadow" cx="24" cy="103" rx="14" ry="3"/>
+              <path class="t-body" d="M9 17a15 15 0 0 1 30 0v47.5a21 21 0 1 1-30 0Z"/>
+              <path class="t-glass" d="M17 17a7 7 0 0 1 14 0v52a12.5 12.5 0 1 1-14 0Z"/>
+              <rect class="t-column" x="20" y="14" width="8" height="66" rx="4"/>
+              <circle class="t-bulb" cx="24" cy="81" r="9.5"/>
+              <path class="t-ticks" d="M33 24h3M33 34h3M33 44h3M33 54h3"/>
+              <circle class="t-shine" cx="20.5" cy="77.5" r="2.4"/>
+            </svg>
+          </a>
+          <div class="map-card js-map-card">
+            <strong dir="ltr">Hausarztpraxis Hilden Nord</strong>
+            <span class="js-address">–</span>
+          </div>
+          <div class="map-consent js-map-consent">
+            {{map.consent|p}}
+            <button class="btn btn-primary btn-sm js-map-load" type="button" data-i18n="map.load">Karte laden</button>
+          </div>
+        </div>"""
+
+
 def PAGES(page_hero):
     home = """    <section class="hero">
       <div class="container hero-grid">
@@ -217,6 +259,8 @@ def PAGES(page_hero):
           <li class="js-direction" data-key="parking"><b data-i18n="directions.parking">Parken</b><span class="js-direction-text"></span></li>
           <li class="js-direction" data-key="access"><b data-i18n="directions.access">Barrierefreiheit</b><span class="js-direction-text"></span></li>
         </ul>
+      </div>
+      <div class="container map-wrap">""" + MAP + """
       </div>
     </section>"""
 
@@ -467,6 +511,8 @@ def PAGES(page_hero):
             </div>
           </div>
         </div>
+      </div>
+      <div class="container map-wrap">""" + MAP + """
       </div>
     </section>"""
 

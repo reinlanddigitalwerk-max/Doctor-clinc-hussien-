@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async () => {
-  const b = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell' });
+  const b = await chromium.launch(process.env.CHROMIUM ? { executablePath: process.env.CHROMIUM } : {});
   const errs = [];
   for (const [pg, lang, w] of [['index','de',1440],['leistungen','ar',390],['gutachten','uk',1024]]) {
     const p = await b.newPage({ viewport: { width: w, height: 860 } });

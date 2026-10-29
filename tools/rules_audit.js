@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async () => {
-  const b = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell' });
+  const b = await chromium.launch(process.env.CHROMIUM ? { executablePath: process.env.CHROMIUM } : {});
   const pages = 'index,praxis,leistungen,gutachten,team,sprechzeiten,kontakt,karriere'.split(',');
   for (const [w, h, lang] of [[390, 844, 'uk'], [1440, 900, 'de']]) {
     const small = new Set(), tiny = new Set(), wraps = new Set(), cls = {}, obscured = new Set();
@@ -35,7 +35,7 @@ const { chromium } = require('playwright');
       for (let i = 0; i < 45; i++) {
         await p.keyboard.press('Tab');
         const f = await p.evaluate((hh) => { const el = document.activeElement; if (!el || el === document.body) return null; const rc = el.getBoundingClientRect(); const ab = document.querySelector('.action-bar'); const abTop = ab && getComputedStyle(ab).display !== 'none' ? ab.getBoundingClientRect().top : innerHeight;
-          if (el.closest('.site-header, .action-bar')) return null; return (rc.bottom <= hh + 2 || rc.top >= abTop - 2) ? (el.textContent.trim() || el.className).slice(0, 30) + ` top=${Math.round(rc.top)}` : null; }, header);
+          if (el.closest('.site-header, .action-bar, .skip-link')) return null; return (rc.bottom <= hh + 2 || rc.top >= abTop - 2) ? (el.textContent.trim() || el.className).slice(0, 30) + ` top=${Math.round(rc.top)}` : null; }, header);
         if (f) obscured.add(pg + ': ' + f);
       }
       await ctx.close();

@@ -15,6 +15,6 @@ Hilfsskripte zum Erzeugen und Prüfen der Seite. Die Website selbst braucht sie 
 | `logo_trace.py` | Vektorisiert das Praxislogo (vtracer) | siehe Kopf der Datei |
 
 Die Browser-Tests brauchen einen lokalen Server im Repository-Ordner (`python3 -m http.server 8765`) und Playwright.
-Chromium-Pfad: Umgebungsvariable `CHROMIUM`, sonst `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
+Chromium-Pfad: Umgebungsvariable `CHROMIUM`, sonst der Standard-Browser von Playwright.
 
 Das 3D-Logo (Blender) liegt mit seinen Skripten in `assets/logo-3d/` (`praxis3d.py`, `assemble.py`).

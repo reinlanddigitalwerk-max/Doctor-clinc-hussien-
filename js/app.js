@@ -242,6 +242,7 @@
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
 
       renderDynamic();
+      document.documentElement.classList.remove("i18n-pending");
     });
   }
 
@@ -279,9 +280,10 @@
   function renderContact() {
     each(".js-address", function (node) {
       node.innerHTML = "";
-      node.appendChild(document.createTextNode(P.street));
+      // dir="ltr" je Zeile: sonst wird „40724 Hilden“ auf Arabisch zu „Hilden 40724“
+      node.appendChild(el("span", { dir: "ltr", text: P.street }));
       node.appendChild(document.createElement("br"));
-      node.appendChild(document.createTextNode(P.city));
+      node.appendChild(el("span", { dir: "ltr", text: P.city }));
     });
     each(".js-phone", function (node) { node.textContent = P.phone; });
     each(".js-phone-link", function (node) { node.href = telHref(P.phone); });
@@ -447,7 +449,8 @@
 
   // ---------------------------------------------------------------- Notices
 
-  function renderNotices() {
+  function renderNotices(code) {
+    code = code || lang;
     var today = new Date().toISOString().slice(0, 10);
     var active = (P.notices || []).filter(function (n) { return (!n.from || n.from <= today) && (!n.to || today <= n.to); });
     each(".js-notices", function (box) {
@@ -456,7 +459,7 @@
       active.forEach(function (n) {
         box.appendChild(el("p", { class: "container notice" }, [
           el("span", { class: "notice-label", i18n: "notice.label" }),
-          el("span", { text: n.text[lang] || n.text.de })
+          el("span", { text: n.text[code] || n.text.de })
         ]));
       });
     });
@@ -543,6 +546,29 @@
   // ---------------------------------------------------------------- Bewegung
 
   // Schatten unter dem Kopf, sobald gescrollt wird.
+  // Karte: Google Maps erst nach Klick laden (DSGVO). Google zentriert die Karte auf die Adresse –
+  // dort sitzt der Thermometer-Pin, darum bleibt die Karte unbeweglich.
+  function initMap() {
+    each(".js-map-load", function (btn) {
+      btn.addEventListener("click", function () {
+        var map = btn.closest(".js-map");
+        var frame = document.createElement("iframe");
+        frame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(P.street + ", " + P.city) + "&z=16&output=embed&hl=" + lang;
+        frame.title = t("map.title");
+        frame.setAttribute("data-i18n-attr", "title:map.title");
+        frame.setAttribute("tabindex", "-1");
+        frame.loading = "lazy";
+        frame.referrerPolicy = "no-referrer-when-downgrade";
+        var canvas = map.querySelector(".js-map-canvas");
+        canvas.innerHTML = "";
+        canvas.appendChild(frame);
+        map.classList.add("is-loaded");
+        var pin = map.querySelector(".map-pin");
+        if (pin) pin.focus();
+      });
+    });
+  }
+
   function initHeaderShadow() {
     var header = document.querySelector(".site-header");
     if (!header) return;
@@ -605,7 +631,28 @@
     renderMailLinks();
   }
 
+  // Sprachdatei der Startsprache noch während des Ladens blockierend nachladen: So ist sie bei DOMContentLoaded
+  // schon da und die Seite wechselt die Sprache vor dem ersten Bild statt danach (kein Verrutschen).
+  (function () {
+    var first = initialLang();
+    // Andere Startsprache: Seite erst zeigen, wenn übersetzt ist (kein Aufblitzen der deutschen Texte, kein Verrutschen).
+    if (first !== "de") {
+      document.documentElement.classList.add("i18n-pending");
+      setTimeout(function () { document.documentElement.classList.remove("i18n-pending"); }, 3000);
+    }
+    var FONTS = { uk: "source-sans-3-cyrillic", ar: "noto-sans-arabic-arabic" };
+    if (FONTS[first]) ["400", "700"].forEach(function (w) {
+      var l = document.createElement("link");
+      l.rel = "preload"; l.as = "font"; l.type = "font/woff2"; l.crossOrigin = "anonymous";
+      l.href = "assets/fonts/" + FONTS[first] + "-" + w + "-normal.woff2";
+      document.head.appendChild(l);
+    });
+    if (!I18N[first] && document.readyState === "loading") document.write('<script src="js/lang/' + first + '.js"><\/script>');
+  })();
+
   renderHeader();
+  // Hinweise sofort zeigen (Text steht in config.js), damit der Inhalt darunter nicht nachträglich verrutscht.
+  renderNotices(initialLang());
 
   document.addEventListener("DOMContentLoaded", function () {
     renderFooter();
@@ -615,6 +662,7 @@
     loadPhotos();
     initEmblemSpin();
     initHeaderShadow();
+    initMap();
     initReveal();
     initLangMenu();
     document.addEventListener("click", keepLangInLinks);
