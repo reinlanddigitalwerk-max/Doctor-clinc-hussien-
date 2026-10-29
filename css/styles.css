@@ -238,10 +238,12 @@ p { margin: 0 0 1em; }
 .hero { position: relative; isolation: isolate; overflow: hidden; }
 .hero-bg {
   position: absolute; inset: -40px; z-index: -2;
-  background: url("../assets/photos/hero-arzt.jpg") 60% 30% / cover no-repeat;
-  filter: blur(14px) saturate(1.1);
+  background: url("../assets/photos/hero-arzt.jpg") 50% 25% / cover no-repeat;
+  filter: blur(12px) saturate(1.1);
   animation: hero-drift 24s ease-in-out infinite alternate;
 }
+/* Im Foto steht der Arzt links. Bei Text links (LTR) gespiegelt, damit er auf der freien rechten Seite erscheint. */
+[dir="ltr"] .hero-bg { transform: scaleX(-1); }
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(100deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .86) 45%, rgba(247, 244, 238, .55) 100%);
@@ -260,7 +262,7 @@ p { margin: 0 0 1em; }
   background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen;
   animation: logo-shine 6s ease-in-out 1s infinite;
 }
-@keyframes hero-drift { from { transform: scale(1); } to { transform: scale(1.08) translateX(-1.5%); } }
+@keyframes hero-drift { from { scale: 1; } to { scale: 1.08; translate: -1.5% 0; } }
 @keyframes logo-shine { 0% { background-position: 150% 0; } 45%, 100% { background-position: -50% 0; } }
 @keyframes logo-glow { 0%, 100% { filter: none; } 25% { filter: brightness(1.12) saturate(1.2); } }
 @media (prefers-reduced-motion: reduce) {
