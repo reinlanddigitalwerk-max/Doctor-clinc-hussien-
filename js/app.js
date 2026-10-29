@@ -351,6 +351,21 @@
     return DAYS.some(function (d) { return (table[d] || []).length; });
   }
 
+  // Solange die Zeiten nicht bestätigt sind: statt Tabellen und Status ein Hinweis mit Telefonnummer.
+  function renderHoursAsk() {
+    each(".js-hours, .js-hours-compact, .today-strip", function (node) {
+      var box = node.closest("table") || node;
+      var ask = box.nextElementSibling;
+      if (!ask || !ask.classList.contains("hours-ask")) {
+        ask = el("p", { class: "hours-ask" });
+        box.parentNode.insertBefore(ask, box.nextSibling);
+      }
+      ask.innerHTML = "";
+      ask.appendChild(el("span", { text: t("hours.ask") + " " }));
+      ask.appendChild(el("a", { href: telHref(P.phone), dir: "ltr", text: P.phone }));
+    });
+  }
+
   function renderHours() {
     var today = todayKey(new Date());
     each(".js-hours", function (body) {
@@ -584,6 +599,7 @@
   function initScrollEcg() {
     drawEcgs();
     addEventListener("resize", drawEcgs);
+    addEventListener("load", drawEcgs);
     var path = document.querySelector(".scroll-ecg path");
     if (!path) return;
     var ticking = false;
@@ -652,6 +668,7 @@
   // ---------------------------------------------------------------- Boot
 
   function renderDynamic() {
+    if (!P.hoursConfirmed) renderHoursAsk();
     renderHours();
     renderToday();
     renderNotices();
@@ -663,6 +680,7 @@
   // Sprachdatei der Startsprache noch während des Ladens blockierend nachladen: So ist sie bei DOMContentLoaded
   // schon da und die Seite wechselt die Sprache vor dem ersten Bild statt danach (kein Verrutschen).
   (function () {
+    if (!P.hoursConfirmed) document.documentElement.classList.add("hours-pending");
     var first = initialLang();
     // Andere Startsprache: Seite erst zeigen, wenn übersetzt ist (kein Aufblitzen der deutschen Texte, kein Verrutschen).
     if (first !== "de") {

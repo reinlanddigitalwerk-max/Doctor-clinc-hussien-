@@ -72,6 +72,7 @@ window.I18N.en = {
   "lang.en": "English",
   "hours.title": "When we are here for you",
   "hours.closed": "closed",
+  "hours.ask": "For our current opening hours, please call us:",
   "day.mon": "Monday",
   "day.tue": "Tuesday",
   "day.wed": "Wednesday",

@@ -19,6 +19,10 @@ window.PRAXIS = {
   // Online-Terminbuchung (z. B. Doctolib-Link). Leer = Button ruft die Praxis an.
   bookingUrl: "",
 
+  // Erst auf true setzen, wenn "hours" und "acuteHours" die echten Zeiten enthalten. Bis dahin zeigt die Seite
+  // keine Zeiten und keinen „Geöffnet/Geschlossen“-Status, sondern bittet um einen Anruf.
+  hoursConfirmed: false,
+
   // Sprechzeiten (TODO: echte Zeiten eintragen). Leeres Array = geschlossen.
   hours: {
     mon: ["08:00–12:00", "15:00–18:00"],

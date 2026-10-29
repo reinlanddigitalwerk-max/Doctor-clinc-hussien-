@@ -72,6 +72,7 @@ window.I18N.de = {
   "lang.en": "Englisch",
   "hours.title": "Wann wir für Sie da sind",
   "hours.closed": "geschlossen",
+  "hours.ask": "Unsere aktuellen Sprechzeiten erfahren Sie telefonisch:",
   "day.mon": "Montag",
   "day.tue": "Dienstag",
   "day.wed": "Mittwoch",

@@ -72,6 +72,7 @@ window.I18N.ro = {
   "lang.en": "Engleză",
   "hours.title": "Când suntem aici pentru dvs.",
   "hours.closed": "închis",
+  "hours.ask": "Programul actual îl aflați telefonic:",
   "day.mon": "Luni",
   "day.tue": "Marți",
   "day.wed": "Miercuri",

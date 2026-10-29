@@ -842,3 +842,14 @@ a.card { display: block; color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .card:hover, .route:hover, .contact-card:hover { transform: none; }
 }
+
+/* ---- Sprechzeiten noch nicht bestätigt (config.js: hoursConfirmed) ---- */
+.hours-ask { display: none; }
+.hours-pending .hours-ask { display: block; margin: 0; font-weight: 600; }
+.hours-pending .hours-ask a { white-space: nowrap; }
+.hours-pending .today-strip, .hours-pending table.hours, .hours-pending .js-hours-compact,
+.hours-pending .js-status-chip, .hours-pending .js-acute-section { display: none !important; }
+.hours-pending .today-strip + .hours-ask {
+  margin-top: 8px; padding: 16px 24px; background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+}
