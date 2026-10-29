@@ -61,6 +61,8 @@ MAP = """
 
 def PAGES(page_hero):
     home = """    <section class="hero">
+      <!-- Hintergrund: Foto aus assets/photos/hero-arzt.jpg, weichgezeichnet (fehlt es, bleibt der helle Verlauf) -->
+      <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
           {{home.eyebrow|p.eyebrow}}
@@ -81,13 +83,9 @@ def PAGES(page_hero):
         </div>
 
         <div class="hero-visual">
-          <!-- Foto: assets/photos/hero-arzt.jpg (2000×1125). Das Web-Logo liegt genau auf dem Logo an der Wand und glänzt. -->
-          <figure class="hero-photo js-hero-photo">
-            <div class="hero-photo-inner">
-              <img class="hero-photo-img" src="assets/photos/hero-arzt.jpg" width="2000" height="1125" alt="Arzt im Behandlungszimmer der Praxis mit Blutdruckmessgerät" data-i18n-attr="alt:hero.photoAlt" fetchpriority="high">
-              <span class="wall-logo" aria-hidden="true"><img src="assets/logo-praxis.svg" alt=""></span>
-            </div>
-          </figure>
+          <div class="hero-logo">
+            <span class="logo-shine"><img src="assets/logo-praxis.svg" width="964" height="988" alt="Praxislogo: Herz aus Händen mit Familie, Kreuz, Stethoskop und EKG-Linie" data-i18n-attr="alt:hero.emblemAlt" fetchpriority="high"></span>
+          </div>
         </div>
       </div>
       <div class="container">

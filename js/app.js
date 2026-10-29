@@ -533,15 +533,6 @@
   // ---------------------------------------------------------------- 3D-Emblem
 
   // Erst das Standbild (schnell sichtbar), nach dem Laden der Seite die Drehung – außer bei „Bewegung reduzieren“.
-  // Startfoto: fehlt die Datei noch, zeigt der Rahmen das Praxislogo statt eines kaputten Bildes.
-  function initHeroPhoto() {
-    each(".js-hero-photo", function (fig) {
-      var img = fig.querySelector(".hero-photo-img");
-      function missing() { fig.classList.add("is-missing"); }
-      if (img.complete && !img.naturalWidth) missing(); else img.addEventListener("error", missing);
-    });
-  }
-
   // ---------------------------------------------------------------- Bewegung
 
   // Schatten unter dem Kopf, sobald gescrollt wird.
@@ -659,7 +650,6 @@
     renderPaletteSwitch();
     initNav();
     loadPhotos();
-    initHeroPhoto();
     initHeaderShadow();
     initMap();
     initReveal();
