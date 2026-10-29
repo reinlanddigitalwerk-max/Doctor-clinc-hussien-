@@ -200,7 +200,7 @@ p { margin: 0 0 1em; }
     radial-gradient(900px 400px at 15% -10%, var(--primary-soft), transparent 70%),
     linear-gradient(180deg, var(--white), var(--sand));
 }
-.hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 700px); gap: clamp(32px, 5vw, 72px); align-items: center; }
 
 .eyebrow {
   display: inline-block; margin-bottom: 14px; font-size: .875rem; font-weight: 700;
@@ -248,29 +248,24 @@ p { margin: 0 0 1em; }
 }
 [dir="rtl"] .hero::before { background: linear-gradient(260deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .86) 45%, rgba(247, 244, 238, .55) 100%); }
 
-/* Web-Logo rechts: schwebt leicht, ein Lichtstreifen läuft darüber */
-.hero-logo {
-  width: min(400px, 100%); aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%;
-  background: rgba(255, 255, 255, .9); box-shadow: 0 30px 70px rgba(27, 76, 130, .18), inset 0 0 0 1px rgba(255, 255, 255, .7);
-  animation: logo-float 6s ease-in-out infinite;
-}
+/* Lichtstreifen über dem Logo im Kopf */
 .logo-shine {
-  position: relative; display: block; width: 78%;
+  position: relative; display: block; flex-shrink: 0;
   -webkit-mask: url("../assets/logo-praxis.svg") center / contain no-repeat; mask: url("../assets/logo-praxis.svg") center / contain no-repeat;
 }
-.logo-shine img { display: block; width: 100%; height: auto; animation: logo-glow 5s ease-in-out 1s infinite; }
+.logo-shine img { display: block; animation: logo-glow 6s ease-in-out 1s infinite; }
 .logo-shine::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .95) 50%, transparent 65%) no-repeat;
   background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen;
-  animation: logo-shine 5s ease-in-out 1s infinite;
+  animation: logo-shine 6s ease-in-out 1s infinite;
 }
 @keyframes hero-drift { from { transform: scale(1); } to { transform: scale(1.08) translateX(-1.5%); } }
-@keyframes logo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes logo-shine { 0% { background-position: 150% 0; } 45%, 100% { background-position: -50% 0; } }
 @keyframes logo-glow { 0%, 100% { filter: none; } 25% { filter: brightness(1.12) saturate(1.2); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-bg, .hero-logo, .logo-shine img, .logo-shine::after { animation: none; }
+  .hero-bg, .logo-shine img, .logo-shine::after, .hero-ecg path { animation: none; }
+  .hero-ecg path { stroke-dashoffset: 0; }
 }
 
 /* Heute-Leiste unter dem Hero */
@@ -644,7 +639,6 @@ a.card { display: block; color: inherit; text-decoration: none; }
 
   .hero-grid, .split, .doctor, .doctor-feature, .page-hero-grid, .service-block { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
-  .hero-logo { width: min(240px, 64%); }
   .hero::before, [dir="rtl"] .hero::before { background: linear-gradient(180deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .9) 40%, rgba(255, 255, 255, .94) 100%); }
   .doctor-photo, .doctor-feature .photo { max-width: 340px; }
   .cards-3, .contact-cards, .greetings { grid-template-columns: repeat(2, 1fr); }
@@ -798,4 +792,43 @@ a.card { display: block; color: inherit; text-decoration: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .map-pin, .t-shadow, .t-column, .t-bulb { transition: none; }
+}
+
+/* ---- EKG-Linien: Fortschritt beim Scrollen und Herzschlag im Startbereich ---- */
+
+.scroll-ecg {
+  position: absolute; inset-inline: 0; bottom: -7px; width: 100%; height: 12px; pointer-events: none; overflow: visible;
+}
+.scroll-ecg path {
+  fill: none; stroke: var(--primary); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 1 2; stroke-dashoffset: 1; opacity: .8;
+}
+[dir="rtl"] .scroll-ecg { transform: scaleX(-1); }
+
+.hero-ecg { display: block; width: 100%; height: 48px; margin-top: clamp(24px, 4vw, 40px); overflow: visible; }
+.hero-ecg path {
+  fill: none; stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 1 2; stroke-dashoffset: 1; opacity: .55;
+  animation: ecg-draw 2.2s cubic-bezier(.4, 0, .2, 1) .4s forwards;
+}
+[dir="rtl"] .hero-ecg { transform: scaleX(-1); }
+.hero-ecg + .today-strip { margin-top: 8px; }
+@keyframes ecg-draw { to { stroke-dashoffset: 0; } }
+
+/* ---- Kanten & Tiefe („Soft UI“): einheitliche Ränder, weiche Schatten in zwei Lagen ---- */
+
+:root {
+  --shadow-sm: 0 1px 2px rgba(31, 42, 55, .04), 0 4px 14px rgba(31, 42, 55, .05);
+  --shadow-lg: 0 2px 4px rgba(31, 42, 55, .04), 0 18px 40px rgba(27, 76, 130, .12);
+}
+.card, .route, .greeting, .contact-card, .job {
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+.card:hover, .route:hover, .contact-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: var(--primary-softer); }
+.card:active, .route:active { transform: translateY(-1px); transition-duration: .1s; }
+.panel, .today-strip { box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.photo { border-radius: var(--radius); }
+@media (prefers-reduced-motion: reduce) {
+  .card:hover, .route:hover, .contact-card:hover { transform: none; }
 }

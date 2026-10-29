@@ -78,8 +78,9 @@
     chevron: '<path d="m6 9 6 6 6-6"/>'
   };
   // Praxislogo (Herz aus Händen, Familie, Stethoskop) – vektorisiert aus der Visitenkarte.
-  function logo(size) {
-    return '<img class="logo-mark" src="assets/logo-praxis.svg" width="' + size + '" height="' + size + '" alt="" decoding="async">';
+  function logo(size, shine) {
+    var img = '<img class="logo-mark" src="assets/logo-praxis.svg" width="' + size + '" height="' + size + '" alt="" decoding="async">';
+    return shine ? '<span class="logo-shine">' + img + "</span>" : img;
   }
 
   function icon(name, size) {
@@ -105,7 +106,7 @@
       '<a class="skip-link" href="#main" data-i18n="a11y.skip">' + t("a11y.skip") + "</a>" +
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
-          logo(46) +
+          logo(46, true) +
           '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
         '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav +
@@ -130,7 +131,9 @@
             '<span class="bar"></span><span class="bar"></span><span class="bar"></span>' +
           "</button>" +
         "</div>" +
-      "</div></header>" +
+      "</div>" +
+      '<svg class="scroll-ecg js-ecg" data-ecg="repeat" aria-hidden="true" height="12"><path pathLength="1"/></svg>' +
+      "</header>" +
       '<div class="notices js-notices" role="status"></div>';
   }
 
@@ -559,6 +562,42 @@
     });
   }
 
+  // EKG-Linien in echter Pixelbreite zeichnen (gestreckte SVGs verzerren Zacken und Strichlänge).
+  // data-ecg="repeat": Zacke alle 140 px (Kopf), sonst eine Zacke in der Mitte (Startbereich).
+  function drawEcgs() {
+    each(".js-ecg", function (svg) {
+      var w = Math.round(svg.getBoundingClientRect().width), h = +svg.getAttribute("height"), base = h - 4, d;
+      if (!w) return;
+      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+      if (svg.getAttribute("data-ecg") === "repeat") {
+        d = "M0 " + base;
+        for (var x = 0; x < w; x += 140) d += "h58l3-3 3 6 4-9 3 6h63";
+      } else {
+        var mid = Math.round(w / 2) - 30, k = h / 48;
+        d = "M0 " + base + "H" + mid + "l10 " + (-8 * k) + " 8 " + (16 * k) + " 12 " + (-34 * k) + " 12 " + (40 * k) + " 9 " + (-20 * k) + " 7 " + (6 * k) + "H" + w;
+      }
+      svg.querySelector("path").setAttribute("d", d);
+    });
+  }
+
+  // EKG-Linie unter dem Kopf: zeichnet sich mit dem Scrollen (zeigt zugleich, wie weit man gelesen hat).
+  function initScrollEcg() {
+    drawEcgs();
+    addEventListener("resize", drawEcgs);
+    var path = document.querySelector(".scroll-ecg path");
+    if (!path) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var max = document.documentElement.scrollHeight - innerHeight;
+      var p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+      path.style.strokeDashoffset = String(1 - p);
+    }
+    addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+
   function initHeaderShadow() {
     var header = document.querySelector(".site-header");
     if (!header) return;
@@ -651,6 +690,7 @@
     initNav();
     loadPhotos();
     initHeaderShadow();
+    initScrollEcg();
     initMap();
     initReveal();
     initLangMenu();
