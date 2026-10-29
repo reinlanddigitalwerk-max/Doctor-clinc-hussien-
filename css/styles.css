@@ -239,16 +239,16 @@ p { margin: 0 0 1em; }
 .hero-bg {
   position: absolute; inset: -40px; z-index: -2;
   background: url("../assets/photos/hero-arzt.jpg") 50% 25% / cover no-repeat;
-  filter: blur(12px) saturate(1.1);
+  filter: blur(3px) saturate(1.05);
   animation: hero-drift 24s ease-in-out infinite alternate;
 }
 /* Im Foto steht der Arzt links. Bei Text links (LTR) gespiegelt, damit er auf der freien rechten Seite erscheint. */
 [dir="ltr"] .hero-bg { transform: scaleX(-1); }
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(100deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .86) 45%, rgba(247, 244, 238, .55) 100%);
+  background: linear-gradient(100deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .45) 66%, rgba(255, 255, 255, .08) 100%);
 }
-[dir="rtl"] .hero::before { background: linear-gradient(260deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .86) 45%, rgba(247, 244, 238, .55) 100%); }
+[dir="rtl"] .hero::before { background: linear-gradient(260deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .45) 66%, rgba(255, 255, 255, .08) 100%); }
 
 /* Lichtstreifen über dem Logo im Kopf */
 .logo-shine {
@@ -641,7 +641,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
 
   .hero-grid, .split, .doctor, .doctor-feature, .page-hero-grid, .service-block { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
-  .hero::before, [dir="rtl"] .hero::before { background: linear-gradient(180deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .9) 40%, rgba(255, 255, 255, .94) 100%); }
+  .hero::before, [dir="rtl"] .hero::before { background: linear-gradient(180deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, .88) 30%, rgba(255, 255, 255, .92) 100%); }
   .doctor-photo, .doctor-feature .photo { max-width: 340px; }
   .cards-3, .contact-cards, .greetings { grid-template-columns: repeat(2, 1fr); }
   .routes { grid-template-columns: repeat(2, 1fr); }
