@@ -1,14 +1,17 @@
 // Praxisdaten – hier anpassen. Alle Seiten lesen aus diesem Objekt.
 // Werte mit "TODO" sind Platzhalter und müssen vor der Veröffentlichung ersetzt werden.
 window.PRAXIS = {
-  name: "Hausarzt Praxis Hilden Nord",
-  doctor: "Mohammad Hussein",
+  name: "Hausarztpraxis Hilden Nord",
+  doctor: "Wahbeh Mohammad Hussein",
+  specialty: "Hausarzt – Internistische Diagnostik",
+  website: "www.hausarztpraxishildennord.de",
 
-  street: "Musterstraße 1",          // TODO: echte Straße + Hausnummer
-  city: "40721 Hilden",              // TODO: PLZ prüfen
-  phone: "02103 000000",             // TODO: echte Telefonnummer
-  fax: "",                           // optional, leer = ausgeblendet
-  email: "info@hausarzt-hilden-nord.de", // TODO: echte E-Mail
+  street: "Gustav-Mahler-Str. 1",
+  city: "40724 Hilden",
+  phone: "02103 3375590",
+  fax: "02103 9083251",             // leer = ausgeblendet
+  whatsapp: "02103 9083252",        // leer = ausgeblendet
+  email: "info@hausarztpraxishildennord.de",
 
   // Nur für Vorschauen: zeigt unten links die Leiste zum Umschalten der Farbpaletten.
   previewPalettes: false,
@@ -64,7 +67,7 @@ window.PRAXIS = {
   // Praxisteam. "photo" = Dateiname in assets/photos/ (ohne Endung, .jpg).
   // role: doctor | lead | mfa | trainee
   team: [
-    { name: "Mohammad Hussein", role: "doctor", photo: "team-mohammad-hussein", langs: ["de", "ar", "uk", "ro", "en"] },
+    { name: "Wahbeh Mohammad Hussein", role: "doctor", photo: "team-mohammad-hussein", langs: ["de", "ar", "uk", "ro", "en"] },
     { name: "", role: "lead", photo: "team-2", langs: [] },     // TODO: Name eintragen
     { name: "", role: "mfa", photo: "team-3", langs: [] },      // TODO
     { name: "", role: "mfa", photo: "team-4", langs: [] }       // TODO

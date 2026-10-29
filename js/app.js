@@ -39,7 +39,6 @@
     if (P.previewPalettes) { try { localStorage.setItem("praxis-palette", p); } catch (e) { /* ignore */ } }
     if (p && p !== "5") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
-    each(".js-emblem", function (img) { img.src = emblemSrc(); });
     each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
   }
   if (palette) applyPalette(palette);
@@ -78,10 +77,9 @@
     alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>',
     chevron: '<path d="m6 9 6 6 6-6"/>'
   };
-  // Praxis-Siegel als 3D-Rendering aus Blender (assets/logo-3d), je Farbpalette eine Datei.
-  function emblemSrc() { return "assets/logo-3d/emblem-p" + (palette || "5") + ".webp"; }
+  // Praxislogo (Herz aus Händen, Familie, Stethoskop) – vektorisiert aus der Visitenkarte.
   function logo(size) {
-    return '<img class="logo-mark js-emblem" src="' + emblemSrc() + '" width="' + size + '" height="' + size + '" alt="" decoding="async">';
+    return '<img class="logo-mark" src="assets/logo-praxis.svg" width="' + size + '" height="' + size + '" alt="" decoding="async">';
   }
 
   function icon(name, size) {
@@ -108,7 +106,7 @@
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
           logo(46) +
-          '<span class="brand-text"><strong>Hausarzt Praxis</strong><span>Hilden Nord</span></span>' +
+          '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
         '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav +
           '<div class="nav-extra">' +
@@ -168,13 +166,15 @@
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
             '<a class="brand" href="index.html">' + logo(40) +
-            '<span class="brand-text"><strong>Hausarzt Praxis</strong><span>Hilden Nord</span></span></a>' +
+            '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span></a>' +
             '<p data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
             '<p class="footer-langs" dir="ltr">DE · AR · UK · RO · EN</p>' +
           "</div>" +
           '<div><h2 data-i18n="nav.contact">' + t("nav.contact") + "</h2>" +
             '<p class="js-address"></p>' +
             '<p><a class="js-phone-link" href="tel:"><span class="js-phone"></span></a><br>' +
+            '<span class="js-fax-row"><span data-i18n="info.fax">' + t("info.fax") + '</span> <span class="js-fax"></span><br></span>' +
+            '<span class="js-whatsapp-row"><a class="js-whatsapp-link" href="#" target="_blank" rel="noopener"><span data-i18n="info.whatsapp">' + t("info.whatsapp") + '</span> <span class="js-whatsapp"></span></a><br></span>' +
             '<a class="js-mail-link" href="mailto:"><span class="js-email"></span></a></p></div>' +
           '<div><h2 data-i18n="nav.hours">' + t("nav.hours") + "</h2>" +
             '<dl class="hours-compact js-hours-compact"></dl></div>' +
@@ -288,6 +288,9 @@
     each(".js-email", function (node) { node.textContent = P.email; });
     each(".js-fax", function (node) { node.textContent = P.fax; });
     each(".js-fax-row", function (node) { node.hidden = !P.fax; });
+    each(".js-whatsapp", function (node) { node.textContent = P.whatsapp || ""; });
+    each(".js-whatsapp-link", function (node) { if (P.whatsapp) node.href = "https://wa.me/" + telHref(P.whatsapp).replace(/^tel:\+/, ""); });
+    each(".js-whatsapp-row", function (node) { node.hidden = !P.whatsapp; });
     each(".js-route", function (node) {
       node.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(P.name + ", " + P.street + ", " + P.city);
     });

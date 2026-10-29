@@ -1,6 +1,6 @@
 # Hausarzt Praxis Hilden Nord
 
-Website der Hausarztpraxis von Mohammad Hussein (Hausarzt · Ärztliche Gutachten).
+Website der Hausarztpraxis Hilden Nord – Wahbeh Mohammad Hussein (Hausarzt · Internistische Diagnostik · Gutachten).
 Statische Seite ohne Build-Schritt, in 5 Sprachen: Deutsch, Arabisch (RTL), Ukrainisch, Rumänisch, Englisch.
 
 Aufbau wie bei deutschen Hausarztpraxen üblich: Startseite, Praxis, Leistungen, Gutachten (Schwerpunkt),
@@ -22,9 +22,9 @@ Team, Sprechzeiten, Kontakt, Jobs, Impressum, Datenschutz.
 
 ## Vor der Veröffentlichung anpassen
 
-Fast alles steht in **`js/config.js`** (alle `TODO`):
+Fast alles steht in **`js/config.js`**:
 
-- Adresse, Telefon, E-Mail, optional Fax
+- Adresse, Telefon, Fax, WhatsApp, E-Mail (bereits eingetragen laut Visitenkarte)
 - `bookingUrl`: Link zur Online-Buchung (z. B. Doctolib). Leer = „Termin buchen“ ruft die Praxis an.
 - `hours` und `acuteHours`: Sprechzeiten und Akutsprechstunde. Daraus berechnet die Seite automatisch
   „Jetzt geöffnet · bis 12:00 Uhr“ bzw. „Wieder geöffnet: Montag ab 08:00 Uhr“.
@@ -53,15 +53,14 @@ dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 10
 
 ## Logo
 
-- **3D-Emblem (Kopf- und Fußzeile):** in Blender modelliert – Medaille mit Dach und medizinischem Kreuz.
-  Quelle `assets/logo-3d/logo-3d.blend`, 3D-Modell für Web/AR `logo-3d.glb`, Großbilder `logo-3d-hero.png` und
-  `logo-3d-1024.png`. Je Farbpalette ein Kopfzeilen-Bild `emblem-p1.webp` … `emblem-p5.webp`.
-  Neu rendern (Blender-Python-Modul `bpy` und `shapely` nötig): `python assets/logo-3d/logo3d.py <ausgabeordner>`.
-- **Drehendes Emblem (Startseite):** `emblem-spin.webp` (120 Bilder, 6 s pro Umdrehung) und Standbild `emblem-spin-poster.webp`.
-  Erzeugen: `python assets/logo-3d/logo3d.py <ordner> --spin 120`, dann `python assets/logo-3d/assemble.py <ordner>/spin assets/logo-3d`.
+- **Praxislogo:** `assets/logo-praxis.svg` – Herz aus Händen mit Familie, Kreuz, Stethoskop und EKG-Linie.
+  Vektorisiert aus der Visitenkarte (die Vorlage war nur als kleines Bild im PDF enthalten). Liegt die Original-Vektordatei
+  der Grafikerin/des Grafikers vor (AI, EPS, SVG oder PDF), bitte damit ersetzen.
+  Abgeleitet: `favicon-32.png`, `apple-touch-icon.png`, `logo-praxis-512.png`.
+- **3D-Logo (Startseite, drehend):** in Blender aus dem Vektor-Logo gebaut – weiße Medaille, Logo-Teile je Farbe erhaben, beidseitig.
+  Dateien in `assets/logo-3d/`: `praxis-logo-3d.blend` (Quelle), `praxis-logo-3d.glb` (3D-Modell), `emblem-spin.webp`
+  (Drehung, 120 Bilder, 6 s) und `emblem-spin-poster.webp` (Standbild). Erzeugen mit `praxis3d.py` und `assemble.py`.
   Die Seite zeigt zuerst das Standbild und lädt die Drehung nach; bei „Bewegung reduzieren“ bleibt das Standbild.
-- **Flache Varianten:** `assets/logo-mark.svg` (Favicon) und `assets/logo.svg` (mit Schriftzug, z. B. für Briefpapier).
-- **Homescreen-Icon:** `assets/apple-touch-icon.png`.
 
 ## Texte und Sprachen
 
