@@ -85,6 +85,11 @@ Umgesetzt sind u. a.: sichtbarer Fokusrahmen in Praxisblau, Fokus nie unter dem 
 sanftes Einblenden beim Scrollen (aus bei „Bewegung reduzieren“), Kontrast mind. 4,5 : 1.
 Farben und Schriften bleiben bewusst bei Palette 5 und den selbst gehosteten Schriften (keine Google Fonts, DSGVO).
 
+## Werkzeuge
+
+Seiten erzeugen, Texte prüfen, Screenshots und Tests: siehe [`tools/README.md`](tools/README.md).
+HTML-Seiten werden aus `tools/pages_content.py` erzeugt – Änderungen dort machen, dann `python3 tools/build_pages.py`.
+
 ## Lokal ansehen
 
 ```

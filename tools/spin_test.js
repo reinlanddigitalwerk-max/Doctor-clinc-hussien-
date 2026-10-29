@@ -1,0 +1,20 @@
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell' });
+  const errs = [];
+  const p = await b.newPage({ viewport: { width: 1366, height: 860 }, locale: 'de-DE' });
+  p.on('pageerror', e => errs.push(e.message));
+  await p.goto('http://localhost:8765/index.html?lang=de', { waitUntil: 'networkidle' });
+  await p.waitForTimeout(800);
+  console.log('src:', await p.evaluate(() => document.querySelector('.js-emblem-spin').getAttribute('src')));
+  await p.screenshot({ path: `${process.argv[2]}/spin-a.png` });
+  await p.waitForTimeout(900);
+  await p.screenshot({ path: `${process.argv[2]}/spin-b.png`, clip: { x: 700, y: 120, width: 600, height: 560 } });
+  const r = await b.newContext({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 }, locale: 'de-DE' });
+  const m = await r.newPage();
+  await m.goto('http://localhost:8765/index.html?lang=ar', { waitUntil: 'networkidle' }); await m.waitForTimeout(500);
+  console.log('reduced-motion src:', await m.evaluate(() => document.querySelector('.js-emblem-spin').getAttribute('src')), 'sw', await m.evaluate(() => document.documentElement.scrollWidth));
+  await m.screenshot({ path: `${process.argv[2]}/spin-mob.png` });
+  console.log('errors', errs);
+  await b.close();
+})();
