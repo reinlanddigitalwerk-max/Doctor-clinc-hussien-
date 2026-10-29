@@ -12,7 +12,7 @@ window.I18N.de = {
   "cta.book": "Termin buchen",
   "hero.title": "Ihre Hausarztpraxis in Hilden Nord",
   "hero.lead": "Persönliche hausärztliche Versorgung und ärztliche Gutachten – mit Zeit für Ihre Anliegen und in fünf Sprachen.",
-  "hero.emblemAlt": "Praxis-Emblem: Dach und medizinisches Kreuz",
+  "hero.emblemAlt": "Praxislogo: Herz aus Händen mit Familie, Kreuz, Stethoskop und EKG-Linie",
   "hero.badge1": "Neue Patientinnen und Patienten willkommen",
   "hero.badge2": "Gesetzlich & privat versichert",
   "hero.badge3": "Wir sprechen 5 Sprachen",
