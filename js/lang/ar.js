@@ -184,6 +184,7 @@ window.I18N.ar = {
   "photo.waiting": "غرفة الانتظار",
   "photo.treatment": "غرفة الفحص",
   "photo.lab": "المختبر",
+  "photo.contact": "موظفة الاستقبال في العيادة تردّ على الهاتف",
   "first.eyebrow": "جديد لدينا؟",
   "first.title": "زيارتكم الأولى",
   "step1.t": "حجز موعد",

@@ -42,8 +42,10 @@ dezenten Platzhalter. Empfohlen: Querformat 1600 × 1000 px, Porträts 800 × 10
 
 | Dateiname | Wo | Format |
 |---|---|---|
+| `hero-arzt.jpg` | Startseite ganz oben, Hintergrund (Unschärfe zur Textseite hin) | quer, Arzt links im Bild |
 | `praxis-team.jpg` | Startseite „Willkommen“ | quer |
 | `gutachten.jpg` | Gutachten-Seite oben | quer |
+| `kontakt-telefon.jpg` | Kontakt-Seite oben | quer |
 | `praxis-empfang.jpg` | Praxis → Räume | quer |
 | `praxis-wartebereich.jpg` | Praxis → Räume | quer |
 | `praxis-behandlungsraum.jpg` | Praxis → Räume | quer |

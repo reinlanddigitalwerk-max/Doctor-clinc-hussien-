@@ -454,7 +454,16 @@ def PAGES(page_hero):
       </div>
     </section>"""
 
-    kontakt = page_hero("page.contact", "contact.pageLead", "nav.contact") + """
+    kontakt = """    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">{{nav.home}}</a><span aria-hidden="true">/</span>{{nav.contact}}</nav>
+          {{page.contact|h1}}
+          {{contact.pageLead|p.lead}}
+        </div>
+        <div class="photo photo-wide" data-photo="kontakt-telefon" role="img" aria-label="Empfang der Praxis am Telefon" data-i18n-attr="aria-label:photo.contact"></div>
+      </div>
+    </section>
 
     <section class="section">
       <div class="container">

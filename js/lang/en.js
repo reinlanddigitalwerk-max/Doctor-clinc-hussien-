@@ -184,6 +184,7 @@ window.I18N.en = {
   "photo.waiting": "Waiting area",
   "photo.treatment": "Treatment room",
   "photo.lab": "Laboratory",
+  "photo.contact": "The practice reception answering the phone",
   "first.eyebrow": "New here?",
   "first.title": "Your first visit",
   "step1.t": "Book an appointment",

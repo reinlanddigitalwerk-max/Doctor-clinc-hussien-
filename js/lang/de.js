@@ -184,6 +184,7 @@ window.I18N.de = {
   "photo.waiting": "Wartebereich",
   "photo.treatment": "Behandlungsraum",
   "photo.lab": "Labor",
+  "photo.contact": "Empfang der Praxis am Telefon",
   "first.eyebrow": "Neu bei uns?",
   "first.title": "Ihr erster Besuch",
   "step1.t": "Termin vereinbaren",

@@ -184,6 +184,7 @@ window.I18N.ro = {
   "photo.waiting": "Sala de așteptare",
   "photo.treatment": "Cabinet de consultații",
   "photo.lab": "Laborator",
+  "photo.contact": "Recepția cabinetului răspunde la telefon",
   "first.eyebrow": "Sunteți nou la noi?",
   "first.title": "Prima dvs. vizită",
   "step1.t": "Faceți o programare",

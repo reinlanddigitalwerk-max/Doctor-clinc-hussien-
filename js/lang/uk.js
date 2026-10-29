@@ -184,6 +184,7 @@ window.I18N.uk = {
   "photo.waiting": "Зона очікування",
   "photo.treatment": "Кабінет огляду",
   "photo.lab": "Лабораторія",
+  "photo.contact": "Реєстратура практики відповідає на дзвінок",
   "first.eyebrow": "Вперше у нас?",
   "first.title": "Ваш перший візит",
   "step1.t": "Запис на прийом",

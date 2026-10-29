@@ -136,10 +136,12 @@ p { margin: 0 0 1em; }
 .main-nav { display: flex; gap: 2px; margin-inline-start: auto; }
 .nav-extra { display: none; }
 .main-nav a {
-  color: var(--ink); text-decoration: none; font-weight: 600; font-size: 1rem;
+  color: var(--ink); text-decoration: none; font-weight: 600; font-size: 1rem; white-space: nowrap;
   padding: 8px 11px; border-radius: 999px;
 }
 .main-nav a:hover { background: var(--primary-soft); color: var(--primary-dark); }
+/* Ukrainisch hat die längsten Menüwörter: etwas enger, damit alles in eine Zeile passt */
+:root[lang="uk"] .main-nav a { padding-inline: 7px; font-size: .95rem; }
 .main-nav a[aria-current="page"] { background: var(--primary-soft); color: var(--primary-dark); }
 
 .header-tools { display: flex; align-items: center; gap: 10px; }
@@ -200,7 +202,7 @@ p { margin: 0 0 1em; }
     radial-gradient(900px 400px at 15% -10%, var(--primary-soft), transparent 70%),
     linear-gradient(180deg, var(--white), var(--sand));
 }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 700px); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 620px); gap: clamp(32px, 5vw, 72px); align-items: center; }
 
 .eyebrow {
   display: inline-block; margin-bottom: 14px; font-size: .875rem; font-weight: 700;
@@ -239,16 +241,21 @@ p { margin: 0 0 1em; }
 .hero-bg {
   position: absolute; inset: -40px; z-index: -2;
   background: url("../assets/photos/hero-arzt.jpg") 50% 25% / cover no-repeat;
-  filter: blur(3px) saturate(1.05);
   animation: hero-drift 24s ease-in-out infinite alternate;
 }
 /* Im Foto steht der Arzt links. Bei Text links (LTR) gespiegelt, damit er auf der freien rechten Seite erscheint. */
 [dir="ltr"] .hero-bg { transform: scaleX(-1); }
+/* Unschärfe als Verlauf: kräftig hinter dem Text, zum Arzt hin ausgeblendet. Die Ebene liegt im (ggf. gespiegelten)
+   .hero-bg, darum zeigt der Verlauf in Element-Richtung „to left“ – auf dem Bildschirm immer zur Textseite. */
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0; background: inherit; filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 68%); mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 68%);
+}
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(100deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .45) 66%, rgba(255, 255, 255, .08) 100%);
+  background: linear-gradient(100deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .82) 45%, rgba(255, 255, 255, .25) 66%, rgba(255, 255, 255, 0) 85%);
 }
-[dir="rtl"] .hero::before { background: linear-gradient(260deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .45) 66%, rgba(255, 255, 255, .08) 100%); }
+[dir="rtl"] .hero::before { background: linear-gradient(260deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .82) 45%, rgba(255, 255, 255, .25) 66%, rgba(255, 255, 255, 0) 85%); }
 
 /* Lichtstreifen über dem Logo im Kopf */
 .logo-shine {
@@ -641,6 +648,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
 
   .hero-grid, .split, .doctor, .doctor-feature, .page-hero-grid, .service-block { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
+  .hero-bg::after { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 38%); mask-image: linear-gradient(to bottom, transparent 0%, #000 38%); }
   .hero::before, [dir="rtl"] .hero::before { background: linear-gradient(180deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, .88) 30%, rgba(255, 255, 255, .92) 100%); }
   .doctor-photo, .doctor-feature .photo { max-width: 340px; }
   .cards-3, .contact-cards, .greetings { grid-template-columns: repeat(2, 1fr); }
