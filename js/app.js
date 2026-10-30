@@ -25,19 +25,19 @@
 
   var lang = "de";
 
-  // Farbpaletten-Vorschau: ?palette=1 … 4 (5 = gewählte Palette „Ozeanblau & Sand“). Bleibt beim Navigieren erhalten.
+  // Farbpaletten-Vorschau: ?palette=1 … 5 (6 = gewählte Palette „Logo-Farben“, 5 = frühere Wahl „Ozeanblau & Sand“). Bleibt beim Navigieren erhalten.
   // Mit PRAXIS.previewPalettes = true ist die Leiste immer sichtbar und die Wahl wird gespeichert.
   var palette = (function () {
     var p = new URLSearchParams(location.search).get("palette");
-    if (/^[1-5]$/.test(p || "")) return p;
+    if (/^[1-6]$/.test(p || "")) return p;
     if (!P.previewPalettes) return null;
     try { p = localStorage.getItem("praxis-palette"); } catch (e) { p = null; }
-    return /^[1-5]$/.test(p || "") ? p : "5";
+    return /^[1-6]$/.test(p || "") ? p : "6";
   })();
   function applyPalette(p) {
     palette = p;
     if (P.previewPalettes) { try { localStorage.setItem("praxis-palette", p); } catch (e) { /* ignore */ } }
-    if (p && p !== "5") document.documentElement.setAttribute("data-palette", p);
+    if (p && p !== "6") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
     each(".palette-switch button", function (b) { b.setAttribute("aria-pressed", String(b.value === p)); });
   }
@@ -132,7 +132,7 @@
           "</button>" +
         "</div>" +
       "</div>" +
-      '<svg class="scroll-ecg js-ecg" data-ecg="repeat" aria-hidden="true" height="12"><path pathLength="1"/></svg>' +
+      '<svg class="scroll-ecg js-ecg" data-ecg="repeat" aria-hidden="true" height="12"><defs><linearGradient id="ecg-grad-head" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0" class="ecg-stop-1"/><stop offset=".5" class="ecg-stop-2"/><stop offset="1" class="ecg-stop-3"/></linearGradient></defs><path pathLength="1"/></svg>' +
       "</header>" +
       '<div class="notices js-notices" role="status"></div>';
   }
@@ -260,7 +260,7 @@
     a.href = url.pathname + url.search + url.hash;
   }
 
-  var PALETTE_COLORS = ["#1A6FB5", "#0B4F8A", "#0E7490", "#4F5BD5", "#2563A8"];
+  var PALETTE_COLORS = ["#1A6FB5", "#0B4F8A", "#0E7490", "#4F5BD5", "#2563A8", "#124A87"];
   function renderPaletteSwitch() {
     if (!palette) return;
     var bar = el("div", { class: "palette-switch", role: "group", "aria-label": "Farbpalette" });
@@ -592,6 +592,8 @@
         d = "M0 " + base + "H" + mid + "l10 " + (-8 * k) + " 8 " + (16 * k) + " 12 " + (-34 * k) + " 12 " + (40 * k) + " 9 " + (-20 * k) + " 7 " + (6 * k) + "H" + w;
       }
       svg.querySelector("path").setAttribute("d", d);
+      var grad = svg.querySelector("linearGradient");
+      if (grad) grad.setAttribute("x2", w);
     });
   }
 

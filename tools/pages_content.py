@@ -85,7 +85,7 @@ def PAGES(page_hero):
       </div>
       <div class="container">
         <!-- EKG-Linie: zeichnet sich beim Laden einmal von links nach rechts -->
-        <svg class="hero-ecg js-ecg" aria-hidden="true" height="48"><path pathLength="1"/></svg>
+        <svg class="hero-ecg js-ecg" aria-hidden="true" height="48"><defs><linearGradient id="ecg-grad-hero" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0" class="ecg-stop-1"/><stop offset=".5" class="ecg-stop-2"/><stop offset="1" class="ecg-stop-3"/></linearGradient></defs><path pathLength="1"/></svg>
         <div class="today-strip" role="group" aria-labelledby="today-title">
           <span class="status js-status"></span>
           <p class="today-main"><strong id="today-title" class="js-today-title">Heute</strong> <span class="js-today-hours" dir="ltr">–</span></p>

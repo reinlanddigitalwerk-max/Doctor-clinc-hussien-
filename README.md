@@ -70,8 +70,8 @@ Alle Texte liegen in `js/lang/de.js`, `en.js`, `ar.js`, `uk.js`, `ro.js` – gle
 Deutsch steht zusätzlich direkt im HTML (für Suchmaschinen und ohne JavaScript).
 Eine andere Sprache direkt aufrufen: `?lang=ar`, `?lang=uk`, `?lang=ro`, `?lang=en`.
 
-Farben: gewählt ist Palette 5 „Ozeanblau & Sand“ – alle Werte im `:root`-Block am Anfang von `css/styles.css`.
-Die anderen Paletten bleiben zum Vergleichen erhalten: `?palette=1` … `?palette=4` an eine Adresse anhängen
+Farben: gewählt ist Palette 6 „Logo-Farben“ (Navy #124A87, Himmelblau #2A93C6, Türkis #4FD1C9 aus dem Logo; kühler heller Grund) – alle Werte im `:root`-Block am Anfang von `css/styles.css`. Himmelblau und Türkis nur als Schmuck, als Text die dunkleren Stufen `--sky-text` und `--teal-text` (Kontrast ≥ 4,5:1).
+Die anderen Paletten bleiben zum Vergleichen erhalten: `?palette=1` … `?palette=5` an eine Adresse anhängen (5 = frühere Wahl „Ozeanblau & Sand“)
 (z. B. `index.html?palette=1`) – unten links erscheint dann eine Leiste zum Umschalten.
 
 ## Design-Regeln
@@ -85,7 +85,7 @@ python3 .claude/skills/ui-ux-pro-max/scripts/search.py "medical clinic" --design
 
 Umgesetzt sind u. a.: sichtbarer Fokusrahmen in Praxisblau, Fokus nie unter dem festen Kopf, Tipp-Feedback,
 sanftes Einblenden beim Scrollen (aus bei „Bewegung reduzieren“), Kontrast mind. 4,5 : 1.
-Farben und Schriften bleiben bewusst bei Palette 5 und den selbst gehosteten Schriften (keine Google Fonts, DSGVO).
+Farben und Schriften bleiben bewusst bei Palette 6 und den selbst gehosteten Schriften (keine Google Fonts, DSGVO).
 
 ## Werkzeuge
 
