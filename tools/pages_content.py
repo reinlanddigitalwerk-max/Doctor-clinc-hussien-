@@ -23,7 +23,9 @@ MAP = """
         <div class="map js-map">
           <div class="map-canvas js-map-canvas">
             <svg class="map-bg" aria-hidden="true" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
-              <rect width="800" height="400" class="mb-ground"/>
+              <defs>
+                <linearGradient id="mb-ecg-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="ecg-stop-1"/><stop offset=".6" class="ecg-stop-2"/><stop offset="1" class="ecg-stop-3"/></linearGradient>
+              </defs>
               <rect x="30" y="30" width="200" height="120" rx="14" class="mb-block"/>
               <rect x="270" y="20" width="90" height="140" rx="14" class="mb-block"/>
               <rect x="460" y="30" width="150" height="120" rx="14" class="mb-park"/>
@@ -35,8 +37,11 @@ MAP = """
               <path class="mb-road-edge" d="M-20 200H820M410 -20V420M-20 60 260 200M560 420 640 200 820 150"/>
               <path class="mb-road" d="M-20 200H820M410 -20V420M-20 60 260 200M560 420 640 200 820 150"/>
               <path class="mb-lane" d="M-20 200H820M410 -20V420"/>
+              <!-- Herzschlag-Linie entlang der Straße bis zur Praxis -->
+              <path class="mb-ecg" pathLength="1" d="M-20 200H210l10-10 8 20 12-46 12 54 9-26 7 8H392"/>
             </svg>
           </div>
+          <span class="map-pulse" aria-hidden="true"><i></i><i></i></span>
           <a class="map-pin js-route" href="#" target="_blank" rel="noopener" aria-label="Route zur Praxis planen" data-i18n-attr="aria-label:map.pin">
             <svg aria-hidden="true" viewBox="0 0 48 106" width="48" height="106">
               <ellipse class="t-shadow" cx="24" cy="103" rx="14" ry="3"/>
@@ -49,8 +54,11 @@ MAP = """
             </svg>
           </a>
           <div class="map-card js-map-card">
-            <strong dir="ltr">Hausarztpraxis Hilden Nord</strong>
-            <span class="js-address">–</span>
+            <div class="map-card-head">
+              <span class="map-cross" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 3h5v6.5H21v5h-6.5V21h-5v-6.5H3v-5h6.5Z"/></svg></span>
+              <strong dir="ltr">Hausarztpraxis Hilden Nord</strong>
+            </div>
+            <span class="map-card-body js-address">–</span>
           </div>
           <div class="map-consent js-map-consent">
             {{map.consent|p}}

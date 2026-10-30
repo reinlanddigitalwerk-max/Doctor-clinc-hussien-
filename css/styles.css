@@ -758,17 +758,45 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .map {
   --cold: var(--primary); --hot: #D92D20;
   position: relative; aspect-ratio: 16 / 7; min-height: 320px; overflow: hidden;
-  border: 1px solid var(--line); border-radius: var(--radius); background: var(--sand); box-shadow: var(--shadow);
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+  /* Untergrund wie EKG-Papier: feines und grobes Raster in Türkis/Himmelblau */
+  background-color: #F5FAFC;
+  background-image:
+    linear-gradient(rgba(42, 147, 198, .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 147, 198, .13) 1px, transparent 1px),
+    linear-gradient(rgba(79, 209, 201, .14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 209, 201, .14) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 }
+/* weicher Rand zum Hintergrund hin */
+.map::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6), inset 0 0 60px rgba(229, 240, 248, .9);
+}
+.map.is-loaded::after { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6); }
 .map-canvas, .map-canvas > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 /* Nicht verschiebbar: der Pin bleibt sonst nicht auf der Adresse */
 .map-canvas iframe { pointer-events: none; }
-.mb-ground { fill: var(--sand); }
-.mb-block { fill: #DFEAF1; }
-.mb-park { fill: #D9F1EE; }
+.mb-block { fill: rgba(255, 255, 255, .72); stroke: rgba(42, 147, 198, .22); stroke-width: 1.5; }
+.mb-park { fill: rgba(224, 246, 244, .9); stroke: rgba(79, 209, 201, .45); stroke-width: 1.5; }
 .mb-road-edge { fill: none; stroke: var(--line); stroke-width: 30; stroke-linecap: round; }
 .mb-road { fill: none; stroke: var(--white); stroke-width: 24; stroke-linecap: round; }
 .mb-lane { fill: none; stroke: var(--primary-softer); stroke-width: 2; stroke-dasharray: 10 12; }
+/* Herzschlag läuft wie auf dem Monitor zur Praxis */
+.mb-ecg {
+  fill: none; stroke: url(#mb-ecg-grad); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 1 2; stroke-dashoffset: 1; animation: ecg-sweep 3.2s cubic-bezier(.45, 0, .25, 1) infinite;
+}
+@keyframes ecg-sweep { 0% { stroke-dashoffset: 1; opacity: 1; } 60% { stroke-dashoffset: 0; opacity: 1; } 85%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+
+/* Pulsringe am Boden unter dem Thermometer (Herzschlag: zwei Schläge, Pause) */
+.map-pulse { position: absolute; left: 50%; top: 50%; z-index: 2; width: 0; height: 0; pointer-events: none; }
+.map-pulse i {
+  position: absolute; left: -40px; top: -16px; width: 80px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--teal); opacity: 0; animation: map-pulse 2.4s ease-out infinite;
+}
+.map-pulse i:nth-child(2) { animation-delay: .35s; border-color: var(--sky); }
+@keyframes map-pulse { 0% { transform: scale(.3); opacity: .9; } 60%, 100% { transform: scale(1.6); opacity: 0; } }
 
 /* Der Pin: Unterkante der Kugel liegt genau in der Kartenmitte */
 .map-pin {
@@ -792,15 +820,25 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .map-pin:hover .t-body, .map-pin:focus-visible .t-body { stroke: #A3241A; transition: stroke .5s ease; }
 .map-pin:focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; }
 
+/* Adresse als „Praxiskarte“: blauer Kopf mit Kreuz, darunter die Anschrift */
 .map-card {
-  position: absolute; top: 16px; inset-inline-start: 16px; z-index: 1; display: flex; flex-direction: column; gap: 2px;
-  max-width: calc(100% - 32px); padding: 12px 16px; background: var(--white); border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  position: absolute; top: 16px; inset-inline-start: 16px; z-index: 3; display: flex; flex-direction: column;
+  max-width: calc(100% - 32px); overflow: hidden; background: var(--white); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg); border: 1px solid var(--line);
 }
-.map-card strong { font-size: 1rem; }
-.map-card > span { color: var(--ink-soft); }
+.map-card-head {
+  display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; color: var(--white);
+  background: linear-gradient(110deg, var(--primary), var(--sky));
+}
+[dir="rtl"] .map-card-head { padding: 10px 12px 10px 16px; }
+.map-card-head strong { font-size: 1rem; }
+.map-cross { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, .18); flex-shrink: 0; }
+.map-cross svg { width: 16px; height: 16px; fill: var(--teal); }
+.map-card-body { padding: 10px 16px 12px; color: var(--ink-soft); line-height: 1.5; }
 .map-consent {
   position: absolute; bottom: 16px; inset-inline: 16px; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px 20px;
   padding: 12px 16px; background: rgba(255, 255, 255, .94); border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  z-index: 3; border: 1px solid var(--line); border-inline-start: 4px solid var(--teal);
 }
 .map-consent p { margin: 0; font-size: .95rem; color: var(--ink-soft); max-width: 60ch; }
 .map-consent .btn { flex-shrink: 0; }
@@ -808,11 +846,13 @@ a.card { display: block; color: inherit; text-decoration: none; }
 
 @media (max-width: 600px) {
   .map { aspect-ratio: auto; height: 500px; }
-  .map-card { padding: 10px 14px; }
+  .map-card-body { padding: 8px 14px 10px; }
   .map-consent { flex-direction: column; align-items: stretch; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .map-pin, .t-shadow, .t-column, .t-bulb { transition: none; }
+  .mb-ecg { animation: none; stroke-dashoffset: 0; }
+  .map-pulse { display: none; }
 }
 
 /* ---- EKG-Linien: Fortschritt beim Scrollen und Herzschlag im Startbereich ---- */
