@@ -61,7 +61,7 @@ MAP = """
             <span class="map-card-body js-address">–</span>
           </div>
           <div class="map-consent js-map-consent">
-            {{map.consent|p}}
+            <p><span data-i18n="map.consent">Zum Schutz Ihrer Daten wird die Karte erst nach Ihrem Klick geladen. Dabei werden Daten an Google übertragen.</span> <a href="datenschutz.html#karte" data-i18n="map.privacy">Mehr dazu in der Datenschutzerklärung</a></p>
             <button class="btn btn-primary btn-sm js-map-load" type="button" data-i18n="map.load">Karte laden</button>
           </div>
         </div>"""

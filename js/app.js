@@ -537,13 +537,24 @@
   // ---------------------------------------------------------------- Photos
 
   // Ein Foto erscheint automatisch, sobald assets/photos/<name>.jpg existiert.
+  // Hinweis auf KI-erzeugte Bilder (siehe PRAXIS.aiPhotos)
+  function aiBadge() {
+    return el("span", { class: "ai-badge", i18n: "photo.ai" });
+  }
+
   function loadPhotos(root) {
+    if ((P.aiPhotos || []).indexOf("hero-arzt") !== -1) each(".hero", function (hero) {
+      if (!hero.querySelector(".ai-badge")) hero.appendChild(aiBadge());
+    }, root);
     each(".photo[data-photo]:not([data-loaded])", function (box) {
       box.setAttribute("data-loaded", "");
       var img = new Image();
       img.alt = box.getAttribute("data-alt") || "";
       img.decoding = "async";
-      img.onload = function () { box.classList.add("has-img"); box.insertBefore(img, box.firstChild); };
+      img.onload = function () {
+        box.classList.add("has-img"); box.insertBefore(img, box.firstChild);
+        if ((P.aiPhotos || []).indexOf(box.getAttribute("data-photo")) !== -1) box.appendChild(aiBadge());
+      };
       img.src = "assets/photos/" + box.getAttribute("data-photo") + ".jpg";
     }, root);
   }

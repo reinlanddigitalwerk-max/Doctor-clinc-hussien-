@@ -909,3 +909,13 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .ecg-stop-1 { stop-color: var(--primary); }
 .ecg-stop-2 { stop-color: var(--sky); }
 .ecg-stop-3 { stop-color: var(--teal); }
+
+/* ---- Kennzeichnung KI-erzeugter Bilder ---- */
+.ai-badge {
+  position: absolute; bottom: 10px; inset-inline-end: 10px; z-index: 2; pointer-events: none;
+  padding: 3px 9px; border-radius: 999px; background: rgba(19, 36, 58, .72); color: var(--white);
+  font-size: .875rem; font-weight: 600; line-height: 1.4; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.hero > .ai-badge { bottom: 14px; inset-inline-end: 16px; }
+.photo .ai-badge { position: absolute; }
+.map-consent p a { color: var(--primary); font-weight: 600; white-space: nowrap; }

@@ -77,6 +77,10 @@ window.PRAXIS = {
     { name: "", role: "mfa", photo: "team-4", langs: [] }       // TODO
   ],
 
+  // KI-erzeugte Fotos (Dateinamen ohne .jpg). Sie bekommen sichtbar den Hinweis „KI-generiertes Symbolbild“
+  // (EU-KI-Verordnung Art. 50, Irreführungsverbot nach HWG/Berufsordnung). Echte Fotos hier nicht eintragen.
+  aiPhotos: ["hero-arzt", "praxis-team", "praxis-empfang", "kontakt-telefon"],
+
   // Stellenangebote. Leeres Array = Seite zeigt „Initiativbewerbung“.
   jobs: ["mfa", "trainee"]
 };
