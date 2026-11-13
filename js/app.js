@@ -106,7 +106,7 @@
       '<a class="skip-link" href="#main" data-i18n="a11y.skip">' + t("a11y.skip") + "</a>" +
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
-          logo(64, true) +
+          logo(80, true) +
           '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
         '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav +
@@ -168,7 +168,7 @@
       '<footer class="site-footer"><div class="container">' +
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
-            '<a class="brand" href="index.html">' + logo(60) +
+            '<a class="brand" href="index.html">' + logo(72) +
             '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span></a>' +
             '<p class="footer-doctor"><strong>' + P.doctor + '</strong><br><span data-i18n="role.doctor">' + t("role.doctor") + "</span></p>" +
             '<p data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
