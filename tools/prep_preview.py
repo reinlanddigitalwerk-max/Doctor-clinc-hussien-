@@ -9,7 +9,7 @@ def cp(rel):
     shutil.copy(ROOT / rel, PV / rel)
     if rel != "index.html":
         files[rel] = rel
-for p in ["css/styles.css", "js/app.js", "js/config.js"] + [f"js/lang/{c}.js" for c in "de en ar uk ro".split()]:
+for p in ["css/styles.css", "js/app.js", "js/config.js"] + [f"js/lang/{c}.js" for c in "de en ar uk ro tr ru".split()]:
     cp(p)
 for p in sorted(ROOT.glob("assets/fonts/*.woff2")):
     cp(str(p.relative_to(ROOT)))

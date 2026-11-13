@@ -1,7 +1,8 @@
 # Hausarzt Praxis Hilden Nord
 
 Website der Hausarztpraxis Hilden Nord – Wahbeh Mohammad Hussein (Hausarzt · Internistische Diagnostik · Gutachten).
-Statische Seite ohne Build-Schritt, in 5 Sprachen: Deutsch, Arabisch (RTL), Ukrainisch, Rumänisch, Englisch.
+Statische Seite ohne Build-Schritt, in 7 Sprachen: Deutsch, Arabisch (RTL), Ukrainisch, Rumänisch, Englisch, Türkisch, Russisch.
+(In der Praxis gesprochen werden laut Texten fünf: Deutsch, Arabisch, Ukrainisch, Rumänisch, Englisch.)
 
 Aufbau wie bei deutschen Hausarztpraxen üblich: Startseite, Praxis, Leistungen, Gutachten (Schwerpunkt),
 Team, Sprechzeiten, Kontakt, Jobs, Impressum, Datenschutz.

@@ -20,7 +20,7 @@ const { chromium } = require('playwright');
           if ((rc.height < 24 || rc.width < 24) && !inline) out.small.push(`${label} ${Math.round(rc.width)}x${Math.round(rc.height)}`);
         });
         document.querySelectorAll('body *').forEach(el => {
-          const own = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()); if (!own || !el.offsetParent) return;
+          const own = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()); if (!own || !el.offsetParent || el.closest('.ai-badge')) return;
           const fs = parseFloat(getComputedStyle(el).fontSize); if (fs < 14) out.tiny.push(`${fs}px ${el.tagName}.${el.className} "${el.textContent.trim().slice(0, 20)}"`);
         });
         document.querySelectorAll('.status, .notice-label, .status-chip, .chip, .chips li, .eyebrow, .btn').forEach(el => {

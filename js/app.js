@@ -5,8 +5,8 @@
 
   var P = window.PRAXIS;
   var I18N = window.I18N = window.I18N || {};
-  var LANGS = ["de", "ar", "uk", "ro", "en"];
-  var LANG_NAMES = { de: "Deutsch", ar: "العربية", uk: "Українська", ro: "Română", en: "English" };
+  var LANGS = ["de", "ar", "uk", "ro", "en", "tr", "ru"];
+  var LANG_NAMES = { de: "Deutsch", ar: "العربية", uk: "Українська", ro: "Română", en: "English", tr: "Türkçe", ru: "Русский" };
   var RTL = ["ar"];
   var DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
   var STORAGE_KEY = "praxis-lang";
@@ -106,7 +106,7 @@
       '<a class="skip-link" href="#main" data-i18n="a11y.skip">' + t("a11y.skip") + "</a>" +
       '<header class="site-header"><div class="container header-inner">' +
         '<a class="brand" href="index.html" aria-label="' + P.name + '">' +
-          logo(46, true) +
+          logo(64, true) +
           '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span>' +
         "</a>" +
         '<nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">' + nav +
@@ -168,8 +168,9 @@
       '<footer class="site-footer"><div class="container">' +
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
-            '<a class="brand" href="index.html">' + logo(40) +
+            '<a class="brand" href="index.html">' + logo(60) +
             '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span></a>' +
+            '<p class="footer-doctor"><strong>' + P.doctor + '</strong><br><span data-i18n="role.doctor">' + t("role.doctor") + "</span></p>" +
             '<p data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
             '<p class="footer-langs" dir="ltr">DE · AR · UK · RO · EN</p>' +
           "</div>" +
@@ -700,7 +701,7 @@
       document.documentElement.classList.add("i18n-pending");
       setTimeout(function () { document.documentElement.classList.remove("i18n-pending"); }, 3000);
     }
-    var FONTS = { uk: "source-sans-3-cyrillic", ar: "noto-sans-arabic-arabic" };
+    var FONTS = { uk: "source-sans-3-cyrillic", ru: "source-sans-3-cyrillic", ar: "noto-sans-arabic-arabic", tr: "source-sans-3-latin-ext" };
     if (FONTS[first]) ["400", "700"].forEach(function (w) {
       var l = document.createElement("link");
       l.rel = "preload"; l.as = "font"; l.type = "font/woff2"; l.crossOrigin = "anonymous";
