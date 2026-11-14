@@ -169,6 +169,8 @@ def PAGES(page_hero):
           <div class="greeting" lang="uk"><b>Ласкаво просимо</b>{{lang.uk}}</div>
           <div class="greeting" lang="ro"><b>Bine ați venit</b>{{lang.ro}}</div>
           <div class="greeting" lang="en"><b>Welcome</b>{{lang.en}}</div>
+          <div class="greeting" lang="tr"><b>Hoş geldiniz</b>{{lang.tr}}</div>
+          <div class="greeting" lang="ru"><b>Добро пожаловать</b>{{lang.ru}}</div>
         </div>
       </div>
     </section>

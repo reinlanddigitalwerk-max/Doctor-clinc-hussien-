@@ -70,6 +70,8 @@ window.I18N.ro = {
   "lang.uk": "Ucraineană",
   "lang.ro": "Română",
   "lang.en": "Engleză",
+  "lang.tr": "Turcă",
+  "lang.ru": "Rusă",
   "hours.title": "Când suntem aici pentru dvs.",
   "hours.closed": "închis",
   "hours.ask": "Programul actual îl aflați telefonic:",

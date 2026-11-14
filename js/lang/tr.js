@@ -70,6 +70,8 @@ window.I18N.tr = {
   "lang.uk": "Ukraynaca",
   "lang.ro": "Rumence",
   "lang.en": "İngilizce",
+  "lang.tr": "Türkçe",
+  "lang.ru": "Rusça",
   "hours.title": "Sizin için buradayız",
   "hours.closed": "kapalı",
   "hours.ask": "Güncel muayene saatlerimizi telefonla öğrenebilirsiniz:",

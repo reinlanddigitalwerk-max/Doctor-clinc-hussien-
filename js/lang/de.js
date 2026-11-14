@@ -70,6 +70,8 @@ window.I18N.de = {
   "lang.uk": "Ukrainisch",
   "lang.ro": "Rumänisch",
   "lang.en": "Englisch",
+  "lang.tr": "Türkisch",
+  "lang.ru": "Russisch",
   "hours.title": "Wann wir für Sie da sind",
   "hours.closed": "geschlossen",
   "hours.ask": "Unsere aktuellen Sprechzeiten erfahren Sie telefonisch:",

@@ -70,6 +70,8 @@ window.I18N.en = {
   "lang.uk": "Ukrainian",
   "lang.ro": "Romanian",
   "lang.en": "English",
+  "lang.tr": "Turkish",
+  "lang.ru": "Russian",
   "hours.title": "When we are here for you",
   "hours.closed": "closed",
   "hours.ask": "For our current opening hours, please call us:",
