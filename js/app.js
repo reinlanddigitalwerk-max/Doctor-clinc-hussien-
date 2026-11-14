@@ -573,12 +573,13 @@
       btn.addEventListener("click", function () {
         var map = btn.closest(".js-map");
         var frame = document.createElement("iframe");
-        frame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(P.street + ", " + P.city) + "&z=16&output=embed&hl=" + lang;
+        var where = P.geo ? P.geo.lat + "," + P.geo.lng : P.street + ", " + P.city;
+        frame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(where) + "&z=17&output=embed&hl=" + lang;
         frame.title = t("map.title");
         frame.setAttribute("data-i18n-attr", "title:map.title");
         frame.setAttribute("tabindex", "-1");
         frame.loading = "lazy";
-        frame.referrerPolicy = "no-referrer-when-downgrade";
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
         var canvas = map.querySelector(".js-map-canvas");
         canvas.innerHTML = "";
         canvas.appendChild(frame);

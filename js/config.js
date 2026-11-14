@@ -8,6 +8,9 @@ window.PRAXIS = {
 
   street: "Gustav-Mahler-Str. 1",
   city: "40724 Hilden",
+  // Genaue Lage der Praxis (aus Google Maps: 51°11'04.2"N 6°55'47.8"E). Die Karte wird darauf zentriert,
+  // damit der Thermometer-Pin genau auf der Praxis sitzt. Leer lassen = Suche nach der Adresse.
+  geo: { lat: 51.18450, lng: 6.92994 },
   phone: "02103 3375590",
   fax: "02103 9083251",             // leer = ausgeblendet
   whatsapp: "02103 9083252",        // leer = ausgeblendet
