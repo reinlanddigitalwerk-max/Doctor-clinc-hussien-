@@ -17,7 +17,7 @@ window.PRAXIS = {
   previewPalettes: false,
 
   // Online-Terminbuchung (z. B. Doctolib-Link). Leer = Button ruft die Praxis an.
-  bookingUrl: "",
+  bookingUrl: "https://webtermin.medatixx.de/#/ca07910a-aa8e-49fa-b08e-8aeaf78b351e/search",   // medatixx webtermin
 
   // Erst auf true setzen, wenn "hours" und "acuteHours" die echten Zeiten enthalten. Bis dahin zeigt die Seite
   // keine Zeiten und keinen „Geöffnet/Geschlossen“-Status, sondern bittet um einen Anruf.
