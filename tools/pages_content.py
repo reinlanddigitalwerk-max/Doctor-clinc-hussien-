@@ -152,7 +152,7 @@ def PAGES(page_hero):
           <a class="card" href="leistungen.html#krankschreibung">[[icon:clipboard]]{{s7.t|h3}}{{s7.d|p}}</a>
           <a class="card" href="leistungen.html#hausbesuche">[[icon:home]]{{s8.t|h3}}{{s8.d|p}}</a>
         </div>
-        <p style="margin-top:28px"><a class="btn btn-ghost" href="leistungen.html" data-i18n="cta.allServices">Alle Leistungen</a></p>
+        <p class="u-mt-28"><a class="btn btn-ghost" href="leistungen.html" data-i18n="cta.allServices">Alle Leistungen</a></p>
       </div>
     </section>
 
@@ -262,7 +262,7 @@ def PAGES(page_hero):
         <div>
           {{directions.eyebrow|p.eyebrow}}
           {{directions.title|h2}}
-          <p class="js-address" style="font-size:1.15rem;font-weight:600">–</p>
+          <p class="js-address u-addr">–</p>
           <a class="btn btn-primary js-route" href="#" target="_blank" rel="noopener" data-i18n="contact.route">Route planen</a>
         </div>
         <ul class="info-list js-directions">
@@ -284,7 +284,7 @@ def PAGES(page_hero):
     expert_link = '\n            <a class="btn btn-primary" href="gutachten.html" data-i18n="guide.expert.l">Mehr erfahren</a>'
     leistungen = page_hero("page.services", "services.pageLead", "nav.services", chips) + f"""
 
-    <section class="section" style="padding-top:24px">
+    <section class="section u-pt-24">
       <div class="container">
 {service_block("allgemein", "stetho", "s1.t", "svc.general", 4)}
 {service_block("innere", "heart", "svc.intern.t", "svc.intern", 4)}
@@ -300,10 +300,10 @@ def PAGES(page_hero):
     </section>
 
     <section class="section section-tint">
-      <div class="container narrow" style="text-align:center">
+      <div class="container narrow u-center">
         {{{{services.askTitle|h2}}}}
         {{{{services.askText|p}}}}
-        <div class="hero-cta" style="justify-content:center">
+        <div class="hero-cta u-justify-center">
           <a class="btn btn-primary js-phone-link" href="tel:"><span data-i18n="cta.call">Anrufen</span></a>
           <a class="btn btn-ghost js-book" href="kontakt.html" data-i18n="cta.book">Termin buchen</a>
         </div>
@@ -371,10 +371,10 @@ def PAGES(page_hero):
     </section>
 
     <section class="section section-dark">
-      <div class="container narrow" style="text-align:center">
+      <div class="container narrow u-center">
         {{expert.ctaTitle|h2}}
-        <p class="lead" style="margin-inline:auto" data-i18n="expert.ctaText">x</p>
-        <div class="hero-cta" style="justify-content:center">
+        <p class="lead u-mx-auto" data-i18n="expert.ctaText">x</p>
+        <div class="hero-cta u-justify-center">
           <a class="btn btn-accent js-mail-link" href="mailto:" data-subject="expert.mailSubject" data-i18n="expert.cta">Gutachten anfragen</a>
           <a class="btn btn-outline-light js-phone-link" href="tel:"><span class="js-phone">–</span></a>
         </div>
@@ -419,9 +419,9 @@ def PAGES(page_hero):
           {{team.staffLead|p.lead}}
         </header>
         <div class="team-grid js-team"></div>
-        <a class="card" href="karriere.html" style="margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <a class="card team-jobs-card" href="karriere.html">
           [[icon:briefcase]]
-          <div style="flex:1;min-width:200px">{{team.jobsT|h3}}{{team.jobsD|p}}</div>
+          <div class="team-jobs-text">{{team.jobsT|h3}}{{team.jobsD|p}}</div>
           <span class="more" data-i18n="team.jobsL">x</span>
         </a>
       </div>
@@ -458,7 +458,7 @@ def PAGES(page_hero):
         <div>
           {{holidays.title|h3}}
           {{holidays.d|p}}
-          <div class="panel" style="margin-top:22px">
+          <div class="panel u-mt-22">
             {{visit.title|h3}}
             <ul class="checklist">
 """ + checklist("visit", 5) + """
@@ -525,7 +525,7 @@ def PAGES(page_hero):
             <li class="js-direction" data-key="parking"><b data-i18n="directions.parking">Parken</b><span class="js-direction-text"></span></li>
             <li class="js-direction" data-key="access"><b data-i18n="directions.access">Barrierefreiheit</b><span class="js-direction-text"></span></li>
           </ul>
-          <div class="emergency" style="margin-top:22px">
+          <div class="emergency u-mt-22">
             <h3>[[icon:alert]]<span data-i18n="emergency.title">x</span></h3>
             <div class="emergency-numbers">
               <a href="tel:116117"><b>116 117</b>{{emergency.oncall}}</a>

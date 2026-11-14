@@ -58,10 +58,19 @@ def fill(body):
     body = re.sub(r"\[\[icon:(\w+)\]\]", lambda m: icon(m.group(1)), body)
     return body
 
+# Sicherheitsrichtlinie (GitHub Pages erlaubt keine eigenen HTTP-Header, darum als <meta>).
+# Nur eigene Skripte/Stile/Schriften, Bilder auch als data:-URI (CSS-Masken), Rahmen nur für Google Maps
+# (lädt erst nach Klick), keine Plugins, keine Formulare. frame-ancestors geht als <meta> nicht.
+CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; "
+       "connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; "
+       "base-uri 'self'; form-action 'none'; upgrade-insecure-requests")
+
 SKELETON = """<!doctype html>
 <html lang="de" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="{csp}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} – Hausarztpraxis Hilden Nord</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="{description}">
@@ -101,6 +110,7 @@ def write(filename, page, title_key, body, robots=False):
         title=escape(DE[title_key]) if title_key else page.capitalize(),
         description=escape(DE["meta.description"]),
         robots='\n  <meta name="robots" content="noindex">' if robots else "",
+        csp=CSP,
         page=page,
         data_title=f' data-title="{title_key}"' if title_key else "",
         body=fill(body).rstrip(),

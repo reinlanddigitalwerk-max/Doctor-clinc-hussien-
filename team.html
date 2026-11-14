@@ -2,6 +2,8 @@
 <html lang="de" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unser Team – Hausarztpraxis Hilden Nord</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="Hausarztpraxis in Hilden Nord: hausärztliche Versorgung, Vorsorge, Impfungen und ärztliche Gutachten. Wir sprechen Deutsch, Arabisch, Ukrainisch, Rumänisch, Englisch, Türkisch und Russisch.">
@@ -63,9 +65,9 @@
           <p class="lead" data-i18n="team.staffLead">Unser Team am Empfang und in der Assistenz kümmert sich um Termine, Rezepte und Ihre Fragen.</p>
         </header>
         <div class="team-grid js-team"></div>
-        <a class="card" href="karriere.html" style="margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <a class="card team-jobs-card" href="karriere.html">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
-          <div style="flex:1;min-width:200px"><h3 data-i18n="team.jobsT">Verstärkung gesucht</h3><p data-i18n="team.jobsD">Sie möchten Teil unseres Teams werden? Wir freuen uns auf Sie.</p></div>
+          <div class="team-jobs-text"><h3 data-i18n="team.jobsT">Verstärkung gesucht</h3><p data-i18n="team.jobsD">Sie möchten Teil unseres Teams werden? Wir freuen uns auf Sie.</p></div>
           <span class="more" data-i18n="team.jobsL">Zu den Stellenangeboten</span>
         </a>
       </div>

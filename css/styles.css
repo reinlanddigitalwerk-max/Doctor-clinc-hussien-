@@ -943,3 +943,14 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .hero > .ai-badge { bottom: 10px; inset-inline-end: 12px; }
 .photo .ai-badge { position: absolute; }
 .map-consent p a { font-weight: 600; white-space: nowrap; }
+
+/* ---- Hilfsklassen statt style-Attributen (erlaubt eine strenge Content-Security-Policy ohne 'unsafe-inline') ---- */
+.u-mt-22 { margin-top: 22px; }
+.u-mt-28 { margin-top: 28px; }
+.u-pt-24 { padding-top: 24px; }
+.u-center { text-align: center; }
+.u-justify-center { justify-content: center; }
+.u-mx-auto { margin-inline: auto; }
+.u-addr { font-size: 1.15rem; font-weight: 600; }
+.card.team-jobs-card { margin-top: 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.team-jobs-text { flex: 1; min-width: 200px; }

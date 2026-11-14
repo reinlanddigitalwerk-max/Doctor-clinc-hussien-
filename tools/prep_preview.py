@@ -16,13 +16,17 @@ for p in sorted(ROOT.glob("assets/fonts/*.woff2")):
 for p in ["assets/logo-praxis.svg", "assets/logo-mono.png", "assets/favicon-32.png", "assets/apple-touch-icon.png",
           "assets/logo-3d/emblem-spin.webp", "assets/logo-3d/emblem-spin-poster.webp"]:
     cp(p)
+# Die Vorschau-Umgebung (claude.ai) fügt eigene Inline-Skripte ein – die CSP gilt nur für die echte Website.
+CSP_META = re.compile(r"\s*<meta http-equiv=\"Content-Security-Policy\"[^>]*>")
 for p in sorted(ROOT.glob("*.html")):
     if p.name != "index.html":
         cp(p.name)
+        (PV / p.name).write_text(CSP_META.sub("", (PV / p.name).read_text()))
 # index.html as fragment: no html/head/body skeleton, page id via window.PRAXIS_PAGE
 html = (ROOT / "index.html").read_text()
 head = re.search(r"<head>\n(.*?)\n</head>", html, re.S).group(1)
 head = re.sub(r"\s*<meta (charset|name=\"viewport\")[^>]*>", "", head).strip()
+head = CSP_META.sub("", head).strip()
 body = re.search(r"<body[^>]*>\n(.*?)\n</body>", html, re.S).group(1)
 (PV / "index.html").write_text(head + '\n<script>window.PRAXIS_PAGE = "home"; window.PRAXIS_TITLE = "page.home";</script>\n' + body + "\n")
 for gone in ["assets/logo.svg", "assets/logo-mark.svg"] + [f"assets/logo-3d/emblem-p{i}.webp" for i in range(1, 6)]:
