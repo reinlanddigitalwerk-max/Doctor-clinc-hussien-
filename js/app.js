@@ -172,7 +172,7 @@
             '<span class="brand-text"><strong>Hausarztpraxis</strong><span>Hilden Nord</span></span></a>' +
             '<p class="footer-doctor"><strong>' + P.doctor + '</strong><br><span data-i18n="role.doctor">' + t("role.doctor") + "</span></p>" +
             '<p data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
-            '<p class="footer-langs" dir="ltr">DE · AR · UK · RO · EN</p>' +
+            '<p class="footer-langs" dir="ltr">DE · AR · UK · RO · EN · TR · RU</p>' +
           "</div>" +
           '<div><h2 data-i18n="nav.contact">' + t("nav.contact") + "</h2>" +
             '<p class="js-address"></p>' +

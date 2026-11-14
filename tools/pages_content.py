@@ -405,6 +405,8 @@ def PAGES(page_hero):
             <li><span class="code">UK</span>{{lang.uk}}</li>
             <li><span class="code">RO</span>{{lang.ro}}</li>
             <li><span class="code">EN</span>{{lang.en}}</li>
+            <li><span class="code">TR</span>{{lang.tr}}</li>
+            <li><span class="code">RU</span>{{lang.ru}}</li>
           </ul>
         </div>
       </div>
