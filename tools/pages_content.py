@@ -28,6 +28,16 @@ MAP = """
               <img src="assets/map/osm-umgebung.webp" width="2000" height="862" decoding="async" alt="Karte: Umgebung der Praxis an der Gustav-Mahler-Straße in Hilden mit Regerstraße, Furtwänglerstraße und Richard-Wagner-Straße" data-i18n-attr="alt:map.alt">
             </div>
           </div>
+          <!-- Eigene, gut lesbare Beschriftung der Straßen aus dem Kartenbild (Lage in Bildpixeln, Winkel in Grad) -->
+          <div class="osm-labels js-osm-labels" aria-hidden="true" dir="ltr">
+            <span class="osm-label is-main" data-x="748" data-y="190" data-r="71.5">Gustav-Mahler-Straße</span>
+            <span class="osm-label" data-x="38" data-y="150" data-r="80">Regerstraße</span>
+            <span class="osm-label" data-x="185" data-y="470" data-r="52">Regerstraße</span>
+            <span class="osm-label" data-x="1545" data-y="282" data-r="57">Furtwänglerstraße</span>
+            <span class="osm-label" data-x="1700" data-y="562" data-r="-32.6">Richard-Wagner-Straße</span>
+            <span class="osm-label is-water" data-x="1300" data-y="590" data-r="0">Hoxbach</span>
+            <span class="osm-label is-stop" data-x="1477" data-y="104" data-r="0"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21v-4M16 21v-4M8 7h8"/></svg>Furtwänglerstraße</span>
+          </div>
           <span class="map-pulse" aria-hidden="true"><i></i><i></i></span>
           <a class="map-pin js-route" href="#" target="_blank" rel="noopener" aria-label="Route zur Praxis planen" data-i18n-attr="aria-label:map.pin">
             <svg aria-hidden="true" viewBox="0 0 48 106" width="48" height="106">

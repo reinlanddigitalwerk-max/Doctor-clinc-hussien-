@@ -573,17 +573,28 @@
       var map = stage.closest(".js-map");
       var px = +stage.getAttribute("data-x"), py = +stage.getAttribute("data-y");
       var iw = +stage.getAttribute("data-w"), ih = +stage.getAttribute("data-h");
+      // Beschriftungen: Lage in Prozent des Bildes (CSSOM, keine style-Attribute wegen CSP)
+      var labels = map.querySelector(".js-osm-labels");
+      if (labels) each(".osm-label", function (lb) {
+        lb.style.left = +lb.getAttribute("data-x") / iw * 100 + "%";
+        lb.style.top = +lb.getAttribute("data-y") / ih * 100 + "%";
+        lb.style.setProperty("--r", lb.getAttribute("data-r") + "deg");
+      }, labels);
       function place() {
         var W = map.clientWidth, H = map.clientHeight;
         if (!W || !H) return;
-        var s = Math.max(W / iw, H / ih, .85);   // mind. .85: Straßennamen gut lesbar
+        var s = Math.max(W / iw, H / ih);   // ganze Umgebung sichtbar; Namen stehen gut lesbar auf eigenen Schildern
         var x = Math.min(0, Math.max(W - iw * s, W / 2 - px * s));
         // Pin etwas unter der Mitte, auf dem Handy tiefer, damit die Adresskarte oben ihn nicht verdeckt
-        var y = H * (W < 600 ? .58 : .45) - py * s;
+        var y = H * (W < 600 ? .58 : .33) - py * s;
         y = Math.max(y, H - ih * s);
         stage.style.width = iw * s + "px";
         stage.style.height = ih * s + "px";
         stage.style.transform = "translate(" + x + "px," + y + "px)";
+        if (labels) {
+          labels.style.width = stage.style.width; labels.style.height = stage.style.height;
+          labels.style.transform = stage.style.transform;
+        }
         map.style.setProperty("--pin-x", x + px * s + "px");
         map.style.setProperty("--pin-y", y + py * s + "px");
       }
