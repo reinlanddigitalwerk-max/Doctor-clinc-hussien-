@@ -108,6 +108,7 @@ window.I18N.uk = {
   "map.load": "Завантажити карту",
   "map.pin": "Прокласти маршрут до практики",
   "map.title": "Карта: розташування практики",
+  "map.alt": "Карта: околиці практики на Gustav-Mahler-Straße у Гільдені з Regerstraße, Furtwänglerstraße та Richard-Wagner-Straße",
   "map.privacy": "Докладніше в політиці конфіденційності",
   "footer.imprint": "Вихідні дані",
   "footer.privacy": "Захист даних",

@@ -59,10 +59,10 @@ def fill(body):
     return body
 
 # Sicherheitsrichtlinie (GitHub Pages erlaubt keine eigenen HTTP-Header, darum als <meta>).
-# Nur eigene Skripte/Stile/Schriften, Bilder auch als data:-URI (CSS-Masken), Rahmen nur für Google Maps
-# (lädt erst nach Klick), keine Plugins, keine Formulare. frame-ancestors geht als <meta> nicht.
+# Nur eigene Skripte/Stile/Schriften/Bilder (auch data:-URIs für CSS-Masken), keine Rahmen (die Karte ist ein
+# selbst gehostetes Bild), keine Plugins, keine Formulare. frame-ancestors geht als <meta> nicht.
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; "
-       "connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; "
+       "connect-src 'self'; frame-src 'none'; object-src 'none'; "
        "base-uri 'self'; form-action 'none'; upgrade-insecure-requests")
 
 SKELETON = """<!doctype html>

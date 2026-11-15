@@ -14,7 +14,7 @@ const LANGS = ['de', 'ar', 'uk', 'ro', 'en', 'tr', 'ru'];
     const p = await ctx.newPage(); p.on('pageerror', e => errs.add(pg + '/' + l + ' ' + e.message));
     await p.goto(BASE + pg + '.html?lang=' + l, { waitUntil: 'networkidle' });
     await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { scrollTo(0, y); await new Promise(r => setTimeout(r, 30)); } });
-    if (pg === 'kontakt' && l === 'de') { await p.click('.js-map-load'); await p.waitForTimeout(500); }
+    if (pg === 'kontakt' && l === 'de') { const ok = await p.evaluate(() => { const i = document.querySelector('.js-osm img'); return !!i && i.complete && i.naturalWidth > 0; }); if (!ok) errs.add('kontakt: map image not loaded'); }
     (await p.evaluate(() => window.__v)).forEach(v => viol.add(pg + '/' + l + ': ' + v));
     runs++; await ctx.close();
   }

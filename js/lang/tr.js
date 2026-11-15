@@ -108,6 +108,7 @@ window.I18N.tr = {
   "map.load": "Haritayı yükle",
   "map.pin": "Muayenehaneye yol tarifi al",
   "map.title": "Harita: muayenehanenin konumu",
+  "map.alt": "Harita: Hilden'de Gustav-Mahler-Straße'deki muayenehanenin çevresi; Regerstraße, Furtwänglerstraße ve Richard-Wagner-Straße ile",
   "map.privacy": "Ayrıntılar gizlilik politikasında",
   "footer.imprint": "Künye",
   "footer.privacy": "Gizlilik",

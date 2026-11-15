@@ -108,6 +108,7 @@ window.I18N.en = {
   "map.load": "Load map",
   "map.pin": "Plan your route to the practice",
   "map.title": "Map: location of the practice",
+  "map.alt": "Map: the area around the practice on Gustav-Mahler-Straße in Hilden, with Regerstraße, Furtwänglerstraße and Richard-Wagner-Straße",
   "map.privacy": "More in our privacy policy",
   "footer.imprint": "Legal notice",
   "footer.privacy": "Privacy",

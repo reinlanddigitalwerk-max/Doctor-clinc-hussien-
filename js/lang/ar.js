@@ -108,6 +108,7 @@ window.I18N.ar = {
   "map.load": "عرض الخريطة",
   "map.pin": "خطّط طريقك إلى العيادة",
   "map.title": "خريطة: موقع العيادة",
+  "map.alt": "خريطة: محيط العيادة في شارع Gustav-Mahler-Straße في هيلدن، مع Regerstraße وFurtwänglerstraße وRichard-Wagner-Straße",
   "map.privacy": "المزيد في سياسة الخصوصية",
   "footer.imprint": "بيانات الناشر",
   "footer.privacy": "حماية البيانات",

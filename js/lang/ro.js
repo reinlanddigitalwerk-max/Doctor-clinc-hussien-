@@ -108,6 +108,7 @@ window.I18N.ro = {
   "map.load": "Încarcă harta",
   "map.pin": "Planificați traseul spre cabinet",
   "map.title": "Hartă: locația cabinetului",
+  "map.alt": "Hartă: împrejurimile cabinetului pe Gustav-Mahler-Straße din Hilden, cu Regerstraße, Furtwänglerstraße și Richard-Wagner-Straße",
   "map.privacy": "Mai multe în politica de confidențialitate",
   "footer.imprint": "Date legale",
   "footer.privacy": "Protecția datelor",

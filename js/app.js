@@ -566,29 +566,33 @@
   // ---------------------------------------------------------------- Bewegung
 
   // Schatten unter dem Kopf, sobald gescrollt wird.
-  // Karte: Google Maps erst nach Klick laden (DSGVO). Google zentriert die Karte auf die Adresse –
-  // dort sitzt der Thermometer-Pin, darum bleibt die Karte unbeweglich.
+  // Karte: OpenStreetMap-Ausschnitt von unserem Webspace (keine Daten an Dritte). Das Bild wird so skaliert und
+  // verschoben, dass die Praxis (data-x/-y in Bildpixeln) gut sichtbar unter dem Thermometer-Pin liegt.
   function initMap() {
-    each(".js-map-load", function (btn) {
-      btn.addEventListener("click", function () {
-        var map = btn.closest(".js-map");
-        var frame = document.createElement("iframe");
-        var where = P.geo ? P.geo.lat + "," + P.geo.lng : P.street + ", " + P.city;
-        frame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(where) + "&z=17&output=embed&hl=" + lang;
-        frame.title = t("map.title");
-        frame.setAttribute("data-i18n-attr", "title:map.title");
-        frame.setAttribute("tabindex", "-1");
-        frame.loading = "lazy";
-        frame.referrerPolicy = "strict-origin-when-cross-origin";
-        var canvas = map.querySelector(".js-map-canvas");
-        canvas.innerHTML = "";
-        canvas.appendChild(frame);
-        map.classList.add("is-loaded");
-        var pin = map.querySelector(".map-pin");
-        if (pin) pin.focus();
-      });
+    each(".js-osm", function (stage) {
+      var map = stage.closest(".js-map");
+      var px = +stage.getAttribute("data-x"), py = +stage.getAttribute("data-y");
+      var iw = +stage.getAttribute("data-w"), ih = +stage.getAttribute("data-h");
+      function place() {
+        var W = map.clientWidth, H = map.clientHeight;
+        if (!W || !H) return;
+        var s = Math.max(W / iw, H / ih, .85);   // mind. .85: Straßennamen gut lesbar
+        var x = Math.min(0, Math.max(W - iw * s, W / 2 - px * s));
+        // Pin etwas unter der Mitte, auf dem Handy tiefer, damit die Adresskarte oben ihn nicht verdeckt
+        var y = H * (W < 600 ? .58 : .45) - py * s;
+        y = Math.max(y, H - ih * s);
+        stage.style.width = iw * s + "px";
+        stage.style.height = ih * s + "px";
+        stage.style.transform = "translate(" + x + "px," + y + "px)";
+        map.style.setProperty("--pin-x", x + px * s + "px");
+        map.style.setProperty("--pin-y", y + py * s + "px");
+      }
+      place();
+      addEventListener("resize", place);
+      if (window.ResizeObserver) new ResizeObserver(place).observe(map);
     });
   }
+
 
   // EKG-Linien in echter Pixelbreite zeichnen (gestreckte SVGs verzerren Zacken und Strichlänge).
   // data-ecg="repeat": Zacke alle 140 px (Kopf), sonst eine Zacke in der Mitte (Startbereich).

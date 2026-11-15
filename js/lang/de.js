@@ -108,6 +108,7 @@ window.I18N.de = {
   "map.load": "Karte laden",
   "map.pin": "Route zur Praxis planen",
   "map.title": "Karte: Lage der Praxis",
+  "map.alt": "Karte: Umgebung der Praxis an der Gustav-Mahler-Straße in Hilden mit Regerstraße, Furtwänglerstraße und Richard-Wagner-Straße",
   "map.privacy": "Mehr dazu in der Datenschutzerklärung",
   "footer.imprint": "Impressum",
   "footer.privacy": "Datenschutz",

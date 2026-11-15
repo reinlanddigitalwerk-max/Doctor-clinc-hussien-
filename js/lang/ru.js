@@ -108,6 +108,7 @@ window.I18N.ru = {
   "map.load": "Загрузить карту",
   "map.pin": "Проложить маршрут до практики",
   "map.title": "Карта: расположение практики",
+  "map.alt": "Карта: окрестности практики на Gustav-Mahler-Straße в Хильдене, с Regerstraße, Furtwänglerstraße и Richard-Wagner-Straße",
   "map.privacy": "Подробнее в политике конфиденциальности",
   "footer.imprint": "Выходные данные",
   "footer.privacy": "Конфиденциальность",
