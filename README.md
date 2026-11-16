@@ -116,3 +116,11 @@ Google Maps öffnet sich nur über den Link „Route planen“. Kein Kontaktform
 - `QR-Code-Hausarztpraxis-Hilden-Nord.pdf` – A4 zum Drucken (Seite 1: mit Praxisname und Adresse, Seite 2: nur der Code), Vektor
 
 Für Druck die SVG-Datei verwenden (beliebig skalierbar). Mindestgröße im Druck: ca. 2 × 2 cm.
+
+## Suchmaschinen (Google)
+
+`python3 tools/build_pages.py` erzeugt außer den Seiten auch `sitemap.xml` und `robots.txt`. Jede Seite hat eine
+kanonische Adresse (`<link rel="canonical">`) und Open-Graph-Angaben mit `assets/og-image.jpg` (Vorschaubild beim
+Teilen, 1200 × 630). Die Startseite enthält strukturierte Daten (Schema.org `MedicalClinic`) aus `js/config.js`;
+Öffnungszeiten dort erst ergänzen, wenn sie bestätigt sind.
+In der Google Search Console die Domain bestätigen und `sitemap.xml` einreichen.

@@ -65,6 +65,40 @@ CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' 
        "connect-src 'self'; frame-src 'none'; object-src 'none'; "
        "base-uri 'self'; form-action 'none'; upgrade-insecure-requests")
 
+SITE = "https://www.hausarztpraxishildennord.de"
+
+# Strukturierte Daten für Google (Schema.org), nur auf der Startseite. Ein JSON-Datenblock wird nicht ausgeführt,
+# die CSP bleibt darum unverändert streng. Öffnungszeiten erst eintragen, wenn sie bestätigt sind (config.js).
+def jsonld():
+    import json
+    P = json.loads(subprocess.check_output(
+        ["node", "-e", "global.window={};require(process.argv[1]);process.stdout.write(JSON.stringify(window.PRAXIS))",
+         str(ROOT / "js/config.js")]))
+    tel = lambda n: "+49 " + n.lstrip("0")
+    data = {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "@id": SITE + "/#praxis",
+        "name": P["name"],
+        "url": SITE + "/",
+        "logo": SITE + "/assets/logo-praxis-512.png",
+        "image": SITE + "/assets/og-image.jpg",
+        "description": DE["meta.description"],
+        "telephone": tel(P["phone"]),
+        "faxNumber": tel(P["fax"]),
+        "email": P["email"],
+        "address": {"@type": "PostalAddress", "streetAddress": P["street"], "postalCode": P["city"].split()[0],
+                    "addressLocality": P["city"].split(None, 1)[1], "addressRegion": "Nordrhein-Westfalen", "addressCountry": "DE"},
+        "medicalSpecialty": "PrimaryCare",
+        "isAcceptingNewPatients": True,
+        "availableLanguage": ["German", "Arabic", "Ukrainian", "Romanian", "English", "Turkish", "Russian"],
+        "areaServed": "Hilden",
+        "employee": {"@type": "Person", "name": P["doctor"], "jobTitle": "Hausarzt · Internistische Diagnostik"},
+    }
+    if P.get("bookingUrl"):
+        data["potentialAction"] = {"@type": "ReserveAction", "name": "Termin buchen", "target": P["bookingUrl"]}
+    return '\n  <script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+
 SKELETON = """<!doctype html>
 <html lang="de" dir="ltr">
 <head>
@@ -75,6 +109,17 @@ SKELETON = """<!doctype html>
   <title>{title} – Hausarztpraxis Hilden Nord</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="{description}">
   <meta name="theme-color" content="#124A87">{robots}
+  <link rel="canonical" href="{url}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hausarztpraxis Hilden Nord">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="{title} – Hausarztpraxis Hilden Nord">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{site}/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">{jsonld}
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -111,6 +156,9 @@ def write(filename, page, title_key, body, robots=False):
         description=escape(DE["meta.description"]),
         robots='\n  <meta name="robots" content="noindex">' if robots else "",
         csp=CSP,
+        site=SITE,
+        url=SITE + "/" + ("" if filename == "index.html" else filename),
+        jsonld=jsonld() if filename == "index.html" else "",
         page=page,
         data_title=f' data-title="{title_key}"' if title_key else "",
         body=fill(body).rstrip(),
@@ -132,3 +180,12 @@ for name in ("impressum", "datenschutz"):
     inner = src.read_text()
     body = f'    <section class="legal">\n      <div class="container narrow">\n{inner}\n      </div>\n    </section>'
     write(f"{name}.html", name, None, body, robots=True)
+
+# Für Suchmaschinen: robots.txt und sitemap.xml (nur indexierbare Seiten, ohne Impressum/Datenschutz mit noindex)
+import datetime
+INDEXED = ["index.html", "praxis.html", "leistungen.html", "gutachten.html", "team.html", "sprechzeiten.html", "kontakt.html", "karriere.html"]
+today = datetime.date.today().isoformat()
+(ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+    f"  <url><loc>{SITE}/{'' if f == 'index.html' else f}</loc><lastmod>{today}</lastmod></url>\n" for f in INDEXED) + "</urlset>\n")
+(ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /.claude/\n\nSitemap: {SITE}/sitemap.xml\n")
+print("wrote sitemap.xml, robots.txt")

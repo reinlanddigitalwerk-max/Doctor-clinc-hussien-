@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /.claude/
+
+Sitemap: https://www.hausarztpraxishildennord.de/sitemap.xml
