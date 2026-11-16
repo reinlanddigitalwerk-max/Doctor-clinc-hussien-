@@ -112,7 +112,7 @@ window.I18N.de = {
   "map.privacy": "Mehr dazu in der Datenschutzerklärung",
   "footer.imprint": "Impressum",
   "footer.privacy": "Datenschutz",
-  "page.home": "Hausarzt in Hilden Nord",
+  "page.home": "Ihr Hausarzt in Hilden",
   "page.practice": "Unsere Praxis",
   "page.services": "Leistungen",
   "page.expert": "Ärztliche Gutachten",

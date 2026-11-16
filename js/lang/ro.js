@@ -112,7 +112,7 @@ window.I18N.ro = {
   "map.privacy": "Mai multe în politica de confidențialitate",
   "footer.imprint": "Date legale",
   "footer.privacy": "Protecția datelor",
-  "page.home": "Medic de familie în Hilden Nord",
+  "page.home": "Medicul dvs. de familie în Hilden",
   "page.practice": "Cabinetul nostru",
   "page.services": "Servicii",
   "page.expert": "Expertize medicale",

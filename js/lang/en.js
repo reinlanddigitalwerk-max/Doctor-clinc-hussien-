@@ -112,7 +112,7 @@ window.I18N.en = {
   "map.privacy": "More in our privacy policy",
   "footer.imprint": "Legal notice",
   "footer.privacy": "Privacy",
-  "page.home": "Family doctor in Hilden Nord",
+  "page.home": "Your family doctor in Hilden",
   "page.practice": "Our practice",
   "page.services": "Services",
   "page.expert": "Medical expert reports",

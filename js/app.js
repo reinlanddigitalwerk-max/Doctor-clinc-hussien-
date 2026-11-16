@@ -239,7 +239,8 @@
           node.setAttribute(parts[0], t(parts[1]));
         });
       });
-      if (TITLE_KEY) document.title = t(TITLE_KEY) + " – " + P.name;
+      // Startseite: Praxisname zuerst (so erkennt Google den Namen der Website); sonst Seitentitel – Praxisname
+      if (TITLE_KEY) document.title = PAGE === "home" ? P.name + " – " + t(TITLE_KEY) : t(TITLE_KEY) + " – " + P.name;
 
       each(".js-lang-code", function (node) { node.textContent = lang.toUpperCase(); });
       each(".lang-list [data-lang]", function (b) { b.setAttribute("aria-checked", String(b.getAttribute("data-lang") === lang)); });

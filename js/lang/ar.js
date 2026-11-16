@@ -112,7 +112,7 @@ window.I18N.ar = {
   "map.privacy": "المزيد في سياسة الخصوصية",
   "footer.imprint": "بيانات الناشر",
   "footer.privacy": "حماية البيانات",
-  "page.home": "طبيب الأسرة في هيلدن نورد",
+  "page.home": "طبيب الأسرة في هيلدن",
   "page.practice": "عيادتنا",
   "page.services": "الخدمات",
   "page.expert": "التقارير الطبية",

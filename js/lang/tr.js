@@ -112,7 +112,7 @@ window.I18N.tr = {
   "map.privacy": "Ayrıntılar gizlilik politikasında",
   "footer.imprint": "Künye",
   "footer.privacy": "Gizlilik",
-  "page.home": "Hilden Nord'da aile hekimi",
+  "page.home": "Hilden'deki aile hekiminiz",
   "page.practice": "Muayenehanemiz",
   "page.services": "Hizmetler",
   "page.expert": "Tıbbi bilirkişi raporları",

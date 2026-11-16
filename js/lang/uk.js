@@ -112,7 +112,7 @@ window.I18N.uk = {
   "map.privacy": "Докладніше в політиці конфіденційності",
   "footer.imprint": "Вихідні дані",
   "footer.privacy": "Захист даних",
-  "page.home": "Сімейний лікар у Hilden Nord",
+  "page.home": "Ваш сімейний лікар у Гільдені",
   "page.practice": "Наша практика",
   "page.services": "Послуги",
   "page.expert": "Медичні висновки",

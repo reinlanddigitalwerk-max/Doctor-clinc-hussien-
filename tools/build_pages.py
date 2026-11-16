@@ -97,7 +97,21 @@ def jsonld():
     }
     if P.get("bookingUrl"):
         data["potentialAction"] = {"@type": "ReserveAction", "name": "Termin buchen", "target": P["bookingUrl"]}
-    return '\n  <script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+    # Name der Website für die Google-Suchergebnisse (wird über dem Link angezeigt)
+    site = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": SITE + "/#website",
+        "name": P["name"],
+        "alternateName": ["Hausarzt Hilden Nord", "Hausarztpraxis Hilden", "Praxis " + P["doctor"]],
+        "url": SITE + "/",
+        "inLanguage": ["de", "ar", "uk", "ro", "en", "tr", "ru"],
+        "publisher": {"@id": SITE + "/#praxis"},
+    }
+    data.pop("@context")
+    site.pop("@context")
+    graph = {"@context": "https://schema.org", "@graph": [site, data]}
+    return '\n  <script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False) + "</script>"
 
 SKELETON = """<!doctype html>
 <html lang="de" dir="ltr">
@@ -106,14 +120,14 @@ SKELETON = """<!doctype html>
   <meta http-equiv="Content-Security-Policy" content="{csp}">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} – Hausarztpraxis Hilden Nord</title>
+  <title>{title_full}</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="{description}">
   <meta name="theme-color" content="#124A87">{robots}
   <link rel="canonical" href="{url}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hausarztpraxis Hilden Nord">
   <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="{title} – Hausarztpraxis Hilden Nord">
+  <meta property="og:title" content="{title_full}">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{url}">
   <meta property="og:image" content="{site}/assets/og-image.jpg">
@@ -155,7 +169,8 @@ def page_hero(title_key, lead_key, crumb_key, extra=""):
 
 def write(filename, page, title_key, body, robots=False):
     html = SKELETON.format(
-        title=escape(DE[title_key]) if title_key else page.capitalize(),
+        title_full=(("Hausarztpraxis Hilden Nord – " + escape(DE[title_key])) if filename == "index.html"
+                    else (escape(DE[title_key]) if title_key else page.capitalize()) + " – Hausarztpraxis Hilden Nord"),
         description=escape(DE["meta.description"]),
         robots='\n  <meta name="robots" content="noindex">' if robots else "",
         csp=CSP,
