@@ -196,6 +196,7 @@
             '<a href="datenschutz.html" data-i18n="footer.privacy">' + t("footer.privacy") + "</a>" +
           "</nav>" +
         "</div>" +
+        '<p class="footer-credit" dir="ltr"><a href="https://www.rheinlanddigitalwerk.de/" target="_blank" rel="noopener">Webdesign · Rheinlanddigitalwerk</a></p>' +
       "</div></footer>" +
       '<div class="action-bar">' +
         '<a class="js-phone-link" href="tel:">' + icon("phone", 18) + '<span data-i18n="cta.call">' + t("cta.call") + "</span></a>" +
